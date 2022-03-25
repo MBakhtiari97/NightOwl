@@ -9,7 +9,10 @@
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="RequiredMethods\" />
-    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NightOwl.DataLayer\NightOwl.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

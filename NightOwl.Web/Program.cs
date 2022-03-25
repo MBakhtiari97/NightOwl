@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using NightOwl.DataLayer.Context;
 using Microsoft.Extensions.Configuration;
+using NightOwl.Core.Services;
+using NightOwl.Core.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,13 @@ builder.Services.AddDbContext<NightOwlContext>(options =>
 {
     options.UseSqlServer("Server=.;Database=NightOwl;Trusted_Connection=True;");
 });
+
+#endregion
+
+#region IoC
+
+builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+builder.Services.AddScoped<IGenresRepository,GenresRepository>();
 
 #endregion
 

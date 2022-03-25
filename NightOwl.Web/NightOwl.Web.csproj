@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NightOwl.Core\NightOwl.Core.csproj" />
     <ProjectReference Include="..\NightOwl.DataLayer\NightOwl.DataLayer.csproj" />
+    <ProjectReference Include="..\NightOwl.Utility\NightOwl.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
