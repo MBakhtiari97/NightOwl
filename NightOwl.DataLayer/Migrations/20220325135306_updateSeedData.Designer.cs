@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightOwl.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using NightOwl.DataLayer.Context;
 namespace NightOwl.DataLayer.Migrations
 {
     [DbContext(typeof(NightOwlContext))]
-    partial class NightOwlContextModelSnapshot : ModelSnapshot
+    [Migration("20220325135306_updateSeedData")]
+    partial class updateSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,34 +57,6 @@ namespace NightOwl.DataLayer.Migrations
                             CategoryName = "TvSeries",
                             ItemId = 0
                         });
-                });
-
-            modelBuilder.Entity("NightOwl.DataLayer.Entities.Galleries", b =>
-                {
-                    b.Property<int>("GalleryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GalleryId"), 1L, 1);
-
-                    b.Property<string>("ImageAltName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GalleryId");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("Galleries");
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Genres", b =>
@@ -339,7 +313,7 @@ namespace NightOwl.DataLayer.Migrations
                             IpAddress = "192.168.1.127",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                             PhoneNumber = "09121111111",
-                            RegisterDate = new DateTime(2022, 3, 25, 18, 55, 30, 4, DateTimeKind.Local).AddTicks(3969),
+                            RegisterDate = new DateTime(2022, 3, 25, 18, 23, 5, 897, DateTimeKind.Local).AddTicks(8654),
                             RoleId = 2,
                             Username = "Admin",
                             WalletId = 1
@@ -377,17 +351,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WalletTransactions");
-                });
-
-            modelBuilder.Entity("NightOwl.DataLayer.Entities.Galleries", b =>
-                {
-                    b.HasOne("NightOwl.DataLayer.Entities.Items", "Items")
-                        .WithMany("Galleries")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Roles", b =>
@@ -462,8 +425,6 @@ namespace NightOwl.DataLayer.Migrations
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Items", b =>
                 {
-                    b.Navigation("Galleries");
-
                     b.Navigation("SelectedCategory");
 
                     b.Navigation("SelectedGenres");

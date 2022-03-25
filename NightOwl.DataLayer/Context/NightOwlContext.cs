@@ -25,6 +25,7 @@ namespace NightOwl.DataLayer.Context
         public DbSet<Items> Items { get; set; }
         public DbSet<SelectedGenres> SelectedGenres { get; set; }
         public DbSet<SelectedCategory> SelectedCategories { get; set; }
+        public DbSet<Galleries> Galleries { get; set; }
 
         #endregion
 
@@ -45,7 +46,7 @@ namespace NightOwl.DataLayer.Context
                 Password = PasswordHelper.EncodePasswordMd5("123"),
                 PhoneNumber = "09121111111",
                 RegisterDate = DateTime.Now,
-                Username = "ادمین سیستم",
+                Username = "Admin",
                 WalletId =1 
             });
 
@@ -54,14 +55,14 @@ namespace NightOwl.DataLayer.Context
             #region Roles
 
             //modelBuilder.Entity<Roles>().HasData(new Roles()
-            //    {
-            //        RoleId = 1,
-            //        RoleName = "کاربر"
-            //    },
+            //{
+            //    RoleId = 1,
+            //    RoleName = "User"
+            //},
             //    new Roles()
             //    {
             //        RoleId = 2,
-            //        RoleName = "ادمین"
+            //        RoleName = "Admin"
             //    });
 
 
@@ -72,12 +73,12 @@ namespace NightOwl.DataLayer.Context
             modelBuilder.Entity<Categories>().HasData(new Categories()
                 {
                     CategoryId = 1,
-                    CategoryName = "فیلم"
+                    CategoryName = "Movie"
                 },
                 new Categories()
                 {
                     CategoryId = 2,
-                    CategoryName = "سریال"
+                    CategoryName = "TvSeries"
                 });
 
             #endregion
@@ -87,37 +88,37 @@ namespace NightOwl.DataLayer.Context
             modelBuilder.Entity<Genres>().HasData(new Genres()
                 {
                     GenreId = 1,
-                    GenreName = "اکشن"
+                    GenreName = "Action"
                 },
                 new Genres()
                 {
                     GenreId = 2,
-                    GenreName = "ترسناک"
+                    GenreName = "Horror"
                 },
                 new Genres()
                 {
                     GenreId = 3,
-                    GenreName = "مهیج"
+                    GenreName = "Exciting"
                 },
                 new Genres()
                 {
                     GenreId = 4,
-                    GenreName = "درام"
+                    GenreName = "Drama"
                 },
                 new Genres()
                 {
                     GenreId = 5,
-                    GenreName = "تاریخی"
+                    GenreName = "History"
                 },
                 new Genres()
                 {
                     GenreId = 6,
-                    GenreName = "خانوادگی"
+                    GenreName = "Family"
                 },
                 new Genres()
                 {
                     GenreId = 7,
-                    GenreName = "انیمیشن"
+                    GenreName = "Animation"
                 });
 
             #endregion
