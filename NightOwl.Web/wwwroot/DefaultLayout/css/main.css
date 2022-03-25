@@ -47,7 +47,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Vazir', sans-serif;
   background-color: #2b2b31;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
@@ -411,7 +411,7 @@ ul {
   padding: 0 120px 0 15px;
   font-size: 15px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .header__search-content button {
   position: absolute;
@@ -1054,7 +1054,7 @@ ul {
   font-size: 16px;
   line-height: 26px;
   margin-bottom: 25px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   letter-spacing: 0.2px;
 }
 .section__text:last-child {
@@ -1192,7 +1192,7 @@ ul {
   transition: 0.4s ease;
   position: relative;
   margin-right: 40px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .breadcrumb__item:before {
   content: '\f119';
@@ -1342,7 +1342,7 @@ ul {
   color: #ff5860;
   margin-right: 7px;
   opacity: 0.8;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .card__category a:after {
   content: ',';
@@ -1408,7 +1408,7 @@ ul {
 .card--details .card__description {
   display: block;
   margin-top: 15px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   font-size: 15px;
   line-height: 25px;
   color: rgba(255,255,255,0.7);
@@ -1463,7 +1463,7 @@ ul {
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .card--details .card__meta li:last-child {
   margin-bottom: 0;
@@ -1552,7 +1552,7 @@ ul {
     margin-top: 10px;
   }
   .card__description p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Vazir', sans-serif;
     font-size: 15px;
     line-height: 25px;
     color: rgba(255,255,255,0.7);
@@ -1665,7 +1665,7 @@ ul {
   font-size: 14px;
   display: block;
   color: rgba(255,255,255,0.5);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .details__devices-list {
   display: flex;
@@ -1704,7 +1704,7 @@ ul {
   font-size: 14px;
   display: block;
   color: rgba(255,255,255,0.5);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   margin-bottom: 5px;
 }
 .details__share-list {
@@ -1795,7 +1795,7 @@ ul {
   line-height: 26px;
   margin-bottom: 15px;
   color: rgba(255,255,255,0.7);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   letter-spacing: 0.2px;
 }
 .faq__text b {
@@ -1854,7 +1854,7 @@ ul {
   color: rgba(255,255,255,0.7);
   font-size: 15px;
   line-height: 25px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   margin: 0;
   letter-spacing: 0.2px;
 }
@@ -1939,7 +1939,7 @@ ul {
   border-top: 1px solid rgba(255,255,255,0.05);
   position: relative;
   padding-left: 15px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .price__item:before {
   content: '';
@@ -2026,7 +2026,7 @@ ul {
   padding-left: 40px;
   line-height: 26px;
   margin-bottom: 15px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .plan-features li:before {
   content: '\f3ff';
@@ -2081,7 +2081,7 @@ ul {
   color: rgba(255,255,255,0.7);
   font-size: 15px;
   line-height: 25px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   margin: 0;
   letter-spacing: 0.2px;
 }
@@ -2514,7 +2514,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   color: rgba(255,255,255,0.5);
   line-height: 20px;
   font-weight: 300;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .comments__text {
   display: block;
@@ -2525,7 +2525,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   background-color: #28282d;
   padding: 20px;
   position: relative;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   letter-spacing: 0.2px;
 }
 .comments__text span {
@@ -2703,7 +2703,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   line-height: 25px;
   background-color: #28282d;
   padding: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   letter-spacing: 0.2px;
 }
 .reviews__item {
@@ -2761,7 +2761,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   background-color: #2b2b31;
   margin-bottom: 20px;
   width: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   font-size: 15px;
 }
 .form__textarea {
@@ -2776,7 +2776,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   letter-spacing: 0.2px;
   resize: none;
   background-color: #2b2b31;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .form__btn {
   display: flex;
@@ -2822,7 +2822,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   font-size: 15px;
   height: 20px;
   line-height: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .form__slider-rating {
   width: 160px;
@@ -2907,7 +2907,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .accordion__card .card-header button span:last-child {
   color: rgba(255,255,255,0.5);
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   font-size: 14px;
 }
 .accordion__card .card-header button:before {
@@ -2955,7 +2955,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   font-size: 14px;
   font-weight: 400;
   padding: 5px 10px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .accordion__list tbody tr {
   border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -2972,7 +2972,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   color: rgba(255,255,255,0.5);
   font-size: 14px;
   padding: 5px 10px 5px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 @media (min-width: 1200px) {
   .accordion {
@@ -3020,7 +3020,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 .footer__list li {
   margin-bottom: 10px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .footer__list li:last-child {
   margin-bottom: 0;
@@ -3095,7 +3095,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   margin-top: 15px;
   border-top: 1px solid rgba(255,255,255,0.05);
   padding-top: 30px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .footer__copyright small {
   color: rgba(255,255,255,0.5);
@@ -3233,7 +3233,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   border-radius: 0;
   padding: 0 20px;
   letter-spacing: 0.2px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .sign__group {
   position: relative;
@@ -3252,7 +3252,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .sign__group--checkbox input:checked + label {
   font-size: 14px;
   color: rgba(255,255,255,0.5);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   position: relative;
   cursor: pointer;
   padding-left: 34px;
@@ -3348,7 +3348,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   margin-top: 20px;
   font-size: 14px;
   color: rgba(255,255,255,0.5);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 .sign__text a {
   position: relative;
@@ -3437,7 +3437,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   color: rgba(255,255,255,0.7);
   font-size: 15px;
   line-height: 25px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Vazir', sans-serif;
   margin-bottom: 20px;
 }
 .page-404__btn {
