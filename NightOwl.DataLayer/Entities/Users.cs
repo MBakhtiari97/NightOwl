@@ -27,6 +27,11 @@ namespace NightOwl.DataLayer.Entities
         public string IpAddress { get; set; }
         [Required]
         public int RoleId { get; set; }
+        public int? WalletId { get; set; }
+
+        //nav
+        public List<WalletTransactions> WalletTransactions { get; set; }
+        public List<Roles> Roles { get; set; }
 
     }
 }
