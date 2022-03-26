@@ -1249,6 +1249,11 @@ ul {
 .card__cover img {
   width: 100%;
 }
+.img-cover {
+    width: 100%;
+    max-height: 240px;
+    border-radius: 5px;
+}
 .card__cover:before {
   content: '';
   position: absolute;
