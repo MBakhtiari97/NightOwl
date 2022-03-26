@@ -142,7 +142,8 @@ namespace NightOwl.DataLayer.Context
                 MetaCriticScore = "72",
                 ReleaseYear = "2022",
                 RunningTime = "176'",
-                AddedTime = DateTime.Now
+                AddedTime = DateTime.Now,
+                TrailerLink = "https://www.youtube.com/embed/mqqft2x_Aa4"
             },
                 new Items()
                 {
@@ -159,7 +160,8 @@ namespace NightOwl.DataLayer.Context
                     Director = "Shawn Levy",
                     ImdbScore = "6.8",
                     Title = "The Adam Project",
-                    AddedTime = DateTime.Now
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/IE8HIsIrq4o"
                 },
                 new Items()
                 {
@@ -176,7 +178,8 @@ namespace NightOwl.DataLayer.Context
                     Director = "Domee Shi",
                     ImdbScore = "7.1",
                     Title = "Turning Red",
-                    AddedTime = DateTime.Now
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/XdKzUbAiswE"
                 },
                 new Items()
                 {
@@ -193,7 +196,8 @@ namespace NightOwl.DataLayer.Context
                     Director = "Jon Watts",
                     ImdbScore = "8.5",
                     Title = "Spider-Man: No Way Home",
-                    AddedTime = DateTime.Now
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/JfVOs4VSpmA"
                 },
                 new Items()
                 {
@@ -210,7 +214,8 @@ namespace NightOwl.DataLayer.Context
                     Director = "Adrian Lyne",
                     ImdbScore = "5.4",
                     Title = "Deep Water",
-                    AddedTime = DateTime.Now
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/h0zqe_As_qo"
                 },
                 new Items()
                 {
@@ -227,7 +232,8 @@ namespace NightOwl.DataLayer.Context
                     Director = "Denis Villeneuve",
                     ImdbScore = "8.1",
                     Title = "Dune",
-                    AddedTime = DateTime.Now
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/8g18jFHCLXk"
                 });
 
             #endregion
@@ -251,7 +257,8 @@ namespace NightOwl.DataLayer.Context
                 ReleaseYear = "2015",
                 RunningTime = "60'",
                 Seasons = 5,
-                Title = "The Last Kingdom"
+                Title = "The Last Kingdom",
+                TrailerLink = "https://www.youtube.com/embed/NNBNX34mO34"
             },
                 new Items()
                 {
@@ -270,7 +277,8 @@ namespace NightOwl.DataLayer.Context
                     ReleaseYear = "2013",
                     RunningTime = "60'",
                     Seasons = 6,
-                    Title = "Peaky Blinders"
+                    Title = "Peaky Blinders",
+                    TrailerLink = "https://www.youtube.com/embed/2nsT9uQPIrk"
                 },
                 new Items()
                 {
@@ -289,7 +297,8 @@ namespace NightOwl.DataLayer.Context
                     ReleaseYear = "2011",
                     RunningTime = "57'",
                     Seasons = 8,
-                    Title = "Game of Thrones"
+                    Title = "Game of Thrones",
+                    TrailerLink = "https://www.youtube.com/embed/KPLWWIOCOOQ"
                 },
                 new Items()
                 {
@@ -308,7 +317,8 @@ namespace NightOwl.DataLayer.Context
                     ReleaseYear = "2008",
                     RunningTime = "49'",
                     Seasons = 5,
-                    Title = "Breaking Bad"
+                    Title = "Breaking Bad",
+                    TrailerLink = "https://www.youtube.com/embed/HhesaQXLuRY"
                 });
 
             #endregion

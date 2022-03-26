@@ -46,6 +46,7 @@ namespace NightOwl.DataLayer.Entities
         public int? Episodes { get; set; }
         public int? Seasons { get; set; }
         public string? EndRunningYear { get; set; }
+        public string? TrailerLink { get; set; }
 
         //nav
         public List<SelectedGenres> SelectedGenres { get; set; }

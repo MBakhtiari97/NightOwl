@@ -34,5 +34,21 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByCategoryId(categoryId));
         }
+        [Route("ShowDetails-{itemId}")]
+        public IActionResult ShowMovieDetails(int itemId)
+        {
+            var movieDetails = _movieRepository.GetMovieDetailsByItemId(itemId);
+            if (movieDetails == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var genreId = movieDetails.SelectedGenres.First().GenreId;
+                ViewBag.SimilarItems = _movieRepository.GetSimilarMovies(genreId);
+
+                return View("_SingleItemDetails",movieDetails);
+            }
+        }
     }
 }

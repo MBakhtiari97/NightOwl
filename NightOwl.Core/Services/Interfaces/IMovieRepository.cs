@@ -11,5 +11,8 @@ namespace NightOwl.Core.Services.Interfaces
     {
         List<Items> GetMoviesByCategoryId(int categoryId);
         List<Items> GetLatestMovies();
+        Items GetMovieDetailsByItemId(int itemId);
+
+        List<Items> GetSimilarMovies(int genreId);
     }
 }

@@ -29,6 +29,14 @@ namespace NightOwl.Core.Services
                 .ToList();
         }
 
+        public Items GetMovieDetailsByItemId(int itemId)
+        {
+            return _context.Items
+                .Include(i=>i.SelectedGenres)
+                .ThenInclude(i=>i.Genres)
+                .SingleOrDefault(i=>i.ItemId==itemId);
+        }
+
         public List<Items> GetMoviesByCategoryId(int categoryId)
         {
             return _context.SelectedCategories
@@ -37,6 +45,16 @@ namespace NightOwl.Core.Services
                 .Where(i => i.CategoryId == categoryId)
                 .Select(i => i.Items)
                 .OrderByDescending(i=>i.AddedTime)
+                .ToList();
+        }
+
+        public List<Items> GetSimilarMovies(int genreId)
+        {
+            return _context.SelectedGenres
+                .Where(g => g.GenreId == genreId)
+                .Select(g => g.Items)
+                .OrderByDescending(g=>g.TrailerLink)
+                .Take(6)
                 .ToList();
         }
     }
