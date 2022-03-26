@@ -1304,7 +1304,7 @@ ul {
   opacity: 0;
 }
 .card__play i {
-  margin: 2px 0 0 3px;
+    margin: 2px 0 0 3px;
 }
 .card__play:hover {
   color: #fff;

@@ -50,5 +50,12 @@ namespace NightOwl.Web.Controller
                 return View("_SingleItemDetails",movieDetails);
             }
         }
+        [Route("Sort-{ageRating}")]
+        public IActionResult ShowMoviesByAgeRating(string ageRating)
+        {
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
+            return View("_ShowMoviesList", _movieRepository.GetMoviesByAge(ageRating));
+        }
     }
 }

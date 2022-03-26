@@ -124,15 +124,15 @@
                         <div class="col-12 col-sm-4">
                             <div class="card__cover">
                                 <img src="/img/Movies/@movie.Banner" alt="@movie.Title" class="img-thumbnail img-cover">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
+                                <a href="/ShowDetails-@movie.ItemId" class="card__play">
+                                    <i class="icon ion-ios-arrow-down icon-down-little"></i>
                                 </a>
                             </div>
                         </div>
 
                         <div class="col-12 col-sm-8">
                             <div class="card__content">
-                                <h3 class="card__title"><a href="#">@movie.Title</a></h3>
+                                <h3 class="card__title"><a href="/ShowDetails-@movie.ItemId">@movie.Title</a></h3>
                                 <span class="card__category">
                                     @foreach (var genre in movie.SelectedGenres)
                                         {

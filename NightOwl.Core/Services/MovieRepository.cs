@@ -19,12 +19,22 @@ namespace NightOwl.Core.Services
             _context = context;
         }
 
+        public List<Items> GetLatest()
+        {
+            return _context.Items
+                .OrderByDescending(i => i.AddedTime)
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .Take(8)
+                .ToList();
+        }
+
         public List<Items> GetLatestMovies()
         {
             return _context.Items
                 .OrderByDescending(i => i.AddedTime)
-                .Include(i=>i.SelectedGenres)
-                .ThenInclude(i=>i.Genres)
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
                 .Take(6)
                 .ToList();
         }
@@ -32,9 +42,18 @@ namespace NightOwl.Core.Services
         public Items GetMovieDetailsByItemId(int itemId)
         {
             return _context.Items
-                .Include(i=>i.SelectedGenres)
-                .ThenInclude(i=>i.Genres)
-                .SingleOrDefault(i=>i.ItemId==itemId);
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .SingleOrDefault(i => i.ItemId == itemId);
+        }
+
+        public List<Items> GetMoviesByAge(string ageRating)
+        {
+            return _context.Items
+                .Where(i => i.AgeRating == ageRating)
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .ToList();
         }
 
         public List<Items> GetMoviesByCategoryId(int categoryId)
@@ -44,7 +63,7 @@ namespace NightOwl.Core.Services
                 .ThenInclude(i => i.Genres)
                 .Where(i => i.CategoryId == categoryId)
                 .Select(i => i.Items)
-                .OrderByDescending(i=>i.AddedTime)
+                .OrderByDescending(i => i.AddedTime)
                 .ToList();
         }
 
@@ -53,7 +72,7 @@ namespace NightOwl.Core.Services
             return _context.SelectedGenres
                 .Where(g => g.GenreId == genreId)
                 .Select(g => g.Items)
-                .OrderByDescending(g=>g.TrailerLink)
+                .OrderByDescending(g => g.TrailerLink)
                 .Take(6)
                 .ToList();
         }
