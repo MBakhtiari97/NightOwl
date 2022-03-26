@@ -15,7 +15,6 @@ namespace NightOwl.DataLayer.Entities
         [Required]
         [MaxLength(250)]
         public string GenreName { get; set; }
-        public int ItemId { get; set; }
 
         //nav
         public List<SelectedGenres> SelectedGenres { get; set; }

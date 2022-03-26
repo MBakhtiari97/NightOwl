@@ -39,7 +39,9 @@ namespace NightOwl.DataLayer.Entities
         [MaxLength(800)]
         public string? Actors { get; set; }
         [MaxLength(250)]
-        public string? Director { get; set; }
+        public string? Director { get; set; } 
+        [MaxLength(250)]
+        public string? AgeRating { get; set; }
 
         //nav
         public List<SelectedGenres> SelectedGenres { get; set; }

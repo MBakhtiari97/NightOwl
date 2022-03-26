@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightOwl.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using NightOwl.DataLayer.Context;
 namespace NightOwl.DataLayer.Migrations
 {
     [DbContext(typeof(NightOwlContext))]
-    partial class NightOwlContextModelSnapshot : ModelSnapshot
+    [Migration("20220326015801_update-categories")]
+    partial class updatecategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,10 +148,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.Property<string>("Actors")
                         .HasMaxLength(800)
                         .HasColumnType("nvarchar(800)");
-
-                    b.Property<string>("AgeRating")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("AvailableQualities")
                         .HasMaxLength(250)
@@ -328,7 +326,7 @@ namespace NightOwl.DataLayer.Migrations
                             IpAddress = "192.168.1.127",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                             PhoneNumber = "09121111111",
-                            RegisterDate = new DateTime(2022, 3, 26, 6, 41, 39, 873, DateTimeKind.Local).AddTicks(4716),
+                            RegisterDate = new DateTime(2022, 3, 26, 6, 28, 0, 600, DateTimeKind.Local).AddTicks(3502),
                             RoleId = 2,
                             Username = "Admin",
                             WalletId = 1

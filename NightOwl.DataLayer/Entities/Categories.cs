@@ -16,8 +16,6 @@ namespace NightOwl.DataLayer.Entities
         [Required]
         public string CategoryName { get; set; }
 
-        public int ItemId { get; set; }
-
         //nav
         public List<SelectedCategory> SelectedCategory { get; set; }
     }
