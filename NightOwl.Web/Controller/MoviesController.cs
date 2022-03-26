@@ -21,6 +21,17 @@ namespace NightOwl.Web.Controller
         [Route("Category-{categoryId}")]
         public IActionResult ShowMoviesByCategory(int categoryId)
         {
+            if (categoryId == 1)
+            {
+                ViewBag.CategoryName = "Movies";
+            }
+            else
+            {
+                ViewBag.CategoryName = "Series";
+            }
+            
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByCategoryId(categoryId));
         }
     }

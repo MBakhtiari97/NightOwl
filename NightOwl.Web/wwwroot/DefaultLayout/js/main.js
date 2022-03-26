@@ -389,11 +389,11 @@ $(document).ready(function () {
 	function initializeFirstSlider() {
 		if ($('#filter__years').length) {
 			var firstSlider = document.getElementById('filter__years');
-			noUiSlider.create(firstSlider, {
-				range: {
-					'min': 2000,
-					'max': 2018
-				},
+            noUiSlider.create(firstSlider, {
+                range: {
+                    'min': 1980,
+					'max': 2022
+        },
 				step: 1,
 				connect: true,
 				start: [2005, 2015],

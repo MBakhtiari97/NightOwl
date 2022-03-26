@@ -42,6 +42,10 @@ namespace NightOwl.DataLayer.Entities
         public string? Director { get; set; } 
         [MaxLength(250)]
         public string? AgeRating { get; set; }
+        public DateTime? AddedTime { get; set; }
+        public int? Episodes { get; set; }
+        public int? Seasons { get; set; }
+        public string? EndRunningYear { get; set; }
 
         //nav
         public List<SelectedGenres> SelectedGenres { get; set; }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightOwl.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using NightOwl.DataLayer.Context;
 namespace NightOwl.DataLayer.Migrations
 {
     [DbContext(typeof(NightOwlContext))]
-    partial class NightOwlContextModelSnapshot : ModelSnapshot
+    [Migration("20220326054257_SeedingSomeOtherDatas")]
+    partial class SeedingSomeOtherDatas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,9 +149,6 @@ namespace NightOwl.DataLayer.Migrations
                         .HasMaxLength(800)
                         .HasColumnType("nvarchar(800)");
 
-                    b.Property<DateTime?>("AddedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("AgeRating")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -170,12 +169,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.Property<string>("Director")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("EndRunningYear")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Episodes")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImdbScore")
                         .HasMaxLength(10)
@@ -205,9 +198,6 @@ namespace NightOwl.DataLayer.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int?>("Seasons")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -222,7 +212,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 1,
                             Actors = "Robert Pattinson , Zoë Kravitz , Jeffrey Wright",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1037),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "1-TheBatman.jpg",
@@ -240,7 +229,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 2,
                             Actors = "Ryan Reynolds , Walker Scobell , Mark Ruffalo",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1045),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "2-TheAdamProject.jpg",
@@ -257,7 +245,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 3,
                             Actors = "Rosalie Chiang , Sandra Oh , Ava Morse",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1048),
                             AgeRating = "PG",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "3-TurningRed.jpg",
@@ -274,7 +261,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 4,
                             Actors = "Tom Holland , Zendaya , Benedict Cumberbatch",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1052),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "4-Spider-Man:NoWayHome.jpg",
@@ -291,7 +277,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 5,
                             Actors = "Ben Affleck , Ana de Armas , Tracy Letts",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1056),
                             AgeRating = "R",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "5-DeepWater.jpg",
@@ -308,7 +293,6 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 6,
                             Actors = "Timothée Chalamet , Rebecca Ferguson , Zendaya",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1060),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "6-Dune.jpg",
@@ -320,82 +304,6 @@ namespace NightOwl.DataLayer.Migrations
                             ReleaseYear = "2021",
                             RunningTime = "155'",
                             Title = "Dune"
-                        },
-                        new
-                        {
-                            ItemId = 12,
-                            Actors = "Alexander Dreymon , Eliza Butterworth , Arnas Fedaravicius",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1074),
-                            AgeRating = "TV-MA",
-                            AvailableQualities = "480p,720p,1080p",
-                            Banner = "12-TheLastKingdom.jpg",
-                            Description = "As Alfred the Great defends his kingdom from Norse invaders, Uhtred--born a Saxon but raised by Vikings--seeks to claim his ancestral birthright.",
-                            Director = "Jon East , Edward Bazalgette , Peter Hoar , Alexander Dreymon , Sarah O'Gorman",
-                            EndRunningYear = "-",
-                            Episodes = 46,
-                            ImdbScore = "8.5",
-                            Language = "Eng",
-                            ReleaseYear = "2015",
-                            RunningTime = "60'",
-                            Seasons = 5,
-                            Title = "The Last Kingdom"
-                        },
-                        new
-                        {
-                            ItemId = 13,
-                            Actors = "Cillian Murphy , Paul Anderson , Sophie Rundle",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1080),
-                            AgeRating = "TV-MA",
-                            AvailableQualities = "480p,720p,1080p",
-                            Banner = "13-PeakyBlinders.jpg",
-                            Description = "A gangster family epic set in 1900s England, centering on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
-                            Director = "Steven Knight",
-                            EndRunningYear = "-",
-                            Episodes = 36,
-                            ImdbScore = "8.8",
-                            Language = "Eng",
-                            ReleaseYear = "2013",
-                            RunningTime = "60'",
-                            Seasons = 6,
-                            Title = "Peaky Blinders"
-                        },
-                        new
-                        {
-                            ItemId = 14,
-                            Actors = "Emilia Clarke , Peter Dinklage , Kit Harington",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1084),
-                            AgeRating = "TV-MA",
-                            AvailableQualities = "480p,720p,1080p",
-                            Banner = "14-GameofThrones.jpg",
-                            Description = "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
-                            Director = "David Benioff , D.B.Weiss",
-                            EndRunningYear = "2019",
-                            Episodes = 73,
-                            ImdbScore = "9.3",
-                            Language = "Eng",
-                            ReleaseYear = "2011",
-                            RunningTime = "57'",
-                            Seasons = 8,
-                            Title = "Game of Thrones"
-                        },
-                        new
-                        {
-                            ItemId = 15,
-                            Actors = "Bryan Cranston , Aaron Paul , Anna Gunn",
-                            AddedTime = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(1088),
-                            AgeRating = "TV-MA",
-                            AvailableQualities = "480p,720p,1080p",
-                            Banner = "15-BreakingBad.jpg",
-                            Description = "A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family's future.",
-                            Director = "Vince Gilligan",
-                            EndRunningYear = "2013",
-                            Episodes = 62,
-                            ImdbScore = "9.5",
-                            Language = "Eng",
-                            ReleaseYear = "2008",
-                            RunningTime = "49'",
-                            Seasons = 5,
-                            Title = "Breaking Bad"
                         });
                 });
 
@@ -480,30 +388,6 @@ namespace NightOwl.DataLayer.Migrations
                             SelectedCategoryId = 9,
                             CategoryId = 1,
                             ItemId = 6
-                        },
-                        new
-                        {
-                            SelectedCategoryId = 10,
-                            CategoryId = 2,
-                            ItemId = 12
-                        },
-                        new
-                        {
-                            SelectedCategoryId = 11,
-                            CategoryId = 2,
-                            ItemId = 13
-                        },
-                        new
-                        {
-                            SelectedCategoryId = 12,
-                            CategoryId = 2,
-                            ItemId = 14
-                        },
-                        new
-                        {
-                            SelectedCategoryId = 13,
-                            CategoryId = 2,
-                            ItemId = 15
                         });
                 });
 
@@ -583,66 +467,6 @@ namespace NightOwl.DataLayer.Migrations
                             SelectedGenresId = 14,
                             GenreId = 1,
                             ItemId = 6
-                        },
-                        new
-                        {
-                            SelectedGenresId = 15,
-                            GenreId = 1,
-                            ItemId = 12
-                        },
-                        new
-                        {
-                            SelectedGenresId = 16,
-                            GenreId = 4,
-                            ItemId = 12
-                        },
-                        new
-                        {
-                            SelectedGenresId = 17,
-                            GenreId = 5,
-                            ItemId = 12
-                        },
-                        new
-                        {
-                            SelectedGenresId = 18,
-                            GenreId = 1,
-                            ItemId = 13
-                        },
-                        new
-                        {
-                            SelectedGenresId = 19,
-                            GenreId = 4,
-                            ItemId = 13
-                        },
-                        new
-                        {
-                            SelectedGenresId = 20,
-                            GenreId = 1,
-                            ItemId = 14
-                        },
-                        new
-                        {
-                            SelectedGenresId = 21,
-                            GenreId = 4,
-                            ItemId = 14
-                        },
-                        new
-                        {
-                            SelectedGenresId = 22,
-                            GenreId = 5,
-                            ItemId = 14
-                        },
-                        new
-                        {
-                            SelectedGenresId = 23,
-                            GenreId = 1,
-                            ItemId = 15
-                        },
-                        new
-                        {
-                            SelectedGenresId = 24,
-                            GenreId = 4,
-                            ItemId = 15
                         });
                 });
 
@@ -699,7 +523,7 @@ namespace NightOwl.DataLayer.Migrations
                             IpAddress = "192.168.1.127",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                             PhoneNumber = "09121111111",
-                            RegisterDate = new DateTime(2022, 3, 26, 11, 47, 35, 572, DateTimeKind.Local).AddTicks(816),
+                            RegisterDate = new DateTime(2022, 3, 26, 10, 12, 56, 558, DateTimeKind.Local).AddTicks(7107),
                             RoleId = 2,
                             Username = "Admin",
                             WalletId = 1

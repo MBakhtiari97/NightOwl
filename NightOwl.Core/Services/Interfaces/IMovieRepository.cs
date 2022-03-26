@@ -10,5 +10,6 @@ namespace NightOwl.Core.Services.Interfaces
     public interface IMovieRepository
     {
         List<Items> GetMoviesByCategoryId(int categoryId);
+        List<Items> GetLatestMovies();
     }
 }
