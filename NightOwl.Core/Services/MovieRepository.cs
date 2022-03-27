@@ -47,6 +47,15 @@ namespace NightOwl.Core.Services
                 .SingleOrDefault(i => i.ItemId == itemId);
         }
 
+        public List<Items> GetMoviesByActorName(string actorName)
+        {
+            return _context.Items
+                .Where(i => i.Actors.Contains(actorName))
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .ToList();
+        }
+
         public List<Items> GetMoviesByAge(string ageRating)
         {
             return _context.Items

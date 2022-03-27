@@ -38,6 +38,11 @@
                             <li class="breadcrumb__item"><a>Items By Year</a></li>
                             <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.Year</li>
                         }
+                        @if (ViewBag.AcorImage != null)
+                        {
+                            <li class="breadcrumb__item"><a>Actors</a></li>
+                            <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.ActorName</li>
+                        }
                     </ul>
                     <!-- end breadcrumb -->
                 </div>
@@ -45,93 +50,98 @@
         </div>
     </div>
 </section>
-<!-- end page title -->
-<!-- filter -->
-<div class="filter">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="filter__content">
-                    <div class="filter__items">
-                        <!-- filter item -->
+<!-- end page title 
+<!--fIX THIS SHITTY PART-->
+@if (genres.Count != 0) 
+{
+    <!-- filter -->
+    <div class="filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="filter__content">
+                        <div class="filter__items">
+                            <!-- filter item -->
                         <div class="filter__item" id="filter__genre">
-                            <span class="filter__item-label">GENRE:</span>
+                                <span class="filter__item-label">GENRE:</span>
 
-                            <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <input type="button" value="Action">
-                                <span></span>
+                                <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="button" value="Action">
+                                    <span></span>
+                                </div>
+
+                                <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
+                                    @foreach (var genre in genres)
+                                    {
+                                        <li>@genre.GenreName</li>
+                                    }
+                                </ul>
                             </div>
-
-                            <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
-                                @foreach (var genre in genres)
-                                {
-                                    <li>@genre.GenreName</li>
-                                }
-                            </ul>
-                        </div>
-                        <!-- end filter item -->
-                        <!-- filter item -->
+                            <!-- end filter item -->
+                            <!-- filter item -->
                         <div class="filter__item" id="filter__quality">
-                            <span class="filter__item-label">QUALITY:</span>
+                                <span class="filter__item-label">QUALITY:</span>
 
-                            <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <input type="button" value="1080p">
-                                <span></span>
+                                <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="button" value="1080p">
+                                    <span></span>
+                                </div>
+
+                                <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-quality">
+                                    <li>4K</li>
+                                    <li>1080p</li>
+                                    <li>720p</li>
+                                    <li>480p</li>
+                                </ul>
                             </div>
-
-                            <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-quality">
-                                <li>4K</li>
-                                <li>1080p</li>
-                                <li>720p</li>
-                                <li>480p</li>
-                            </ul>
-                        </div>
-                        <!-- end filter item -->
-                        <!-- filter item -->
+                            <!-- end filter item -->
+                            <!-- filter item -->
                         <div class="filter__item" id="filter__rate">
-                            <span class="filter__item-label">IMBd:</span>
+                                <span class="filter__item-label">IMBd:</span>
 
-                            <div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="filter__range">
-                                    <div id="filter__imbd-start"></div>
-                                    <div id="filter__imbd-end"></div>
+                                <div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="filter__range">
+                                        <div id="filter__imbd-start"></div>
+                                        <div id="filter__imbd-end"></div>
+                                    </div>
+                                    <span></span>
                                 </div>
-                                <span></span>
-                            </div>
 
-                            <div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-rate">
-                                <div id="filter__imbd"></div>
+                                <div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-rate">
+                                    <div id="filter__imbd"></div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end filter item -->
-                        <!-- filter item -->
+                            <!-- end filter item -->
+                            <!-- filter item -->
                         <div class="filter__item" id="filter__year">
-                            <span class="filter__item-label">RELEASE YEAR:</span>
+                                <span class="filter__item-label">RELEASE YEAR:</span>
 
-                            <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="filter__range">
-                                    <div id="filter__years-start"></div>
-                                    <div id="filter__years-end"></div>
+                                <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="filter__range">
+                                        <div id="filter__years-start"></div>
+                                        <div id="filter__years-end"></div>
+                                    </div>
+                                    <span></span>
                                 </div>
-                                <span></span>
-                            </div>
 
-                            <div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
-                                <div id="filter__years"></div>
+                                <div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
+                                    <div id="filter__years"></div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end filter item -->
+                            <!-- end filter item -->
                     </div>
 
-                    <!-- filter btn -->
+                        <!-- filter btn -->
                     <button class="filter__btn" type="button">apply filter</button>
-                    <!-- end filter btn -->
+                        <!-- end filter btn -->
+                </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- end filter -->
+    <!-- end filter -->
+}
+
 <!-- catalog -->
 <div class="catalog">
     <div class="container">

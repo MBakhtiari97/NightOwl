@@ -32,3 +32,15 @@
             margin-left: 5px;
             border-radius: 5px;
         }
+
+.actors-page {
+    margin-top: 150px;
+}
+.actors-page img {
+    height: 230px;
+    border-radius: 5px;
+    border: #fffaf0 1px solid;
+}
+.actors-page h3 {
+    text-align: center;
+}

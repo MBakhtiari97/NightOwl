@@ -10,14 +10,22 @@ namespace NightOwl.Web.Controller
         private IGenresRepository _genresRepository;
         private INotyfService _notyfService;
         private IMovieRepository _movieRepository;
+        private IActorsRepository _actorsRepository;
 
-        public MoviesController(ICategoryRepository categoryRepository, IGenresRepository genresRepository, INotyfService notyfService,IMovieRepository movieRepository)
+        public MoviesController(ICategoryRepository categoryRepository,
+            IGenresRepository genresRepository,
+            INotyfService notyfService,
+            IMovieRepository movieRepository,
+            IActorsRepository actorsRepository)
         {
             _categoryRepository = categoryRepository;
             _genresRepository = genresRepository;
             _notyfService = notyfService;
             _movieRepository = movieRepository;
+            _actorsRepository = actorsRepository;
         }
+
+
         [Route("Category-{categoryId}")]
         public IActionResult ShowMoviesByCategory(int categoryId)
         {
@@ -79,6 +87,15 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             ViewBag.Year = year;
             return View("_ShowMoviesList", _movieRepository.GetMoviesByReleaseYear(year));
+        }
+        [Route("SortByActor-{actorName}")]
+        public IActionResult ShowMoviesByActorName(string actorName)
+        {
+            ViewBag.ActorName = actorName;
+            ViewBag.AcorImage = _actorsRepository.GetActorImage(actorName);
+
+            //TODO:CHECK SEE WHY IF STATE GET INSIDE THE CYCLE
+            return View("_ShowMoviesList", _movieRepository.GetMoviesByActorName(actorName));
         }
     }
 }

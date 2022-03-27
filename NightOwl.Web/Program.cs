@@ -35,6 +35,7 @@ builder.Services.AddDbContext<NightOwlContext>(options =>
 builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
 builder.Services.AddScoped<IGenresRepository,GenresRepository>();
 builder.Services.AddScoped<IMovieRepository,MovieRepository>();
+builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 
 #endregion
 
