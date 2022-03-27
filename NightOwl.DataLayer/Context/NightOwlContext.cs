@@ -482,6 +482,89 @@ namespace NightOwl.DataLayer.Context
 
             #endregion
 
+            #region Actors
+
+            modelBuilder.Entity<Actors>().HasData(new Actors()
+            {
+                ActorGender = "Male",
+                ActorId = 1,
+                ActorImage = "Aaron Paul.jpg",
+                ActorName = "Aaron Paul"
+            }, new Actors()
+            {
+                ActorGender = "Male",
+                ActorId = 2,
+                ActorImage = "Benedict Cumberbatch.jpg",
+                ActorName = "Benedict Cumberbatch"
+            }, new Actors()
+            {
+                ActorGender = "Male",
+                ActorId = 3,
+                ActorImage = "Mark Ruffalo.jpg",
+                ActorName = "Mark Ruffalo"
+            }, new Actors()
+            {
+                ActorGender = "Male",
+                ActorId = 4,
+                ActorImage = "Ryan Reynolds.jpg",
+                ActorName = "Ryan Reynolds"
+            }, new Actors()
+            {
+                ActorGender = "Female",
+                ActorId = 5,
+                ActorImage = "Ana De Armas.jpg",
+                ActorName = "Ana De Armas"
+            }, new Actors()
+            {
+                ActorGender = "Female",
+                ActorId = 6,
+                ActorImage = "Zendaya.jpg",
+                ActorName = "Zendaya"
+            });
+
+            #endregion
+
+            #region SelectedMovies
+
+            modelBuilder.Entity<SelectedMovies>().HasData(new SelectedMovies()
+            {
+                SelectedMovieId = 1,
+                ActorId = 1,
+                ItemId = 15
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 2,
+                ActorId = 2,
+                ItemId = 4
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 3,
+                ActorId = 3,
+                ItemId = 2
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 4,
+                ActorId = 4,
+                ItemId = 2
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 5,
+                ActorId = 5,
+                ItemId = 5
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 6,
+                ActorId = 6,
+                ItemId = 4
+            }, new SelectedMovies()
+            {
+                SelectedMovieId = 7,
+                ActorId = 6,
+                ItemId = 6
+            });
+
+            #endregion
+
             #endregion
 
         }

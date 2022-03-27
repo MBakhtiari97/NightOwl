@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightOwl.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using NightOwl.DataLayer.Context;
 namespace NightOwl.DataLayer.Migrations
 {
     [DbContext(typeof(NightOwlContext))]
-    partial class NightOwlContextModelSnapshot : ModelSnapshot
+    [Migration("20220327165350_InsertSelectedMoviesTB")]
+    partial class InsertSelectedMoviesTB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -302,7 +304,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 1,
                             Actors = "Robert Pattinson , Zoë Kravitz , Jeffrey Wright",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1983),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3811),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "1-TheBatman.jpg",
@@ -321,7 +323,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 2,
                             Actors = "Ryan Reynolds , Walker Scobell , Mark Ruffalo",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1991),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3819),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "2-TheAdamProject.jpg",
@@ -339,7 +341,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 3,
                             Actors = "Rosalie Chiang , Sandra Oh , Ava Morse",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1995),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3822),
                             AgeRating = "PG",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "3-TurningRed.jpg",
@@ -357,7 +359,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 4,
                             Actors = "Tom Holland , Zendaya , Benedict Cumberbatch",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1999),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3826),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "4-Spider-Man:NoWayHome.jpg",
@@ -375,7 +377,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 5,
                             Actors = "Ben Affleck , Ana de Armas , Tracy Letts",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2003),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3830),
                             AgeRating = "R",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "5-DeepWater.jpg",
@@ -393,7 +395,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 6,
                             Actors = "Timothée Chalamet , Rebecca Ferguson , Zendaya",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2006),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3834),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "6-Dune.jpg",
@@ -411,7 +413,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 12,
                             Actors = "Alexander Dreymon , Eliza Butterworth , Arnas Fedaravicius",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2025),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3852),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "12-TheLastKingdom.jpg",
@@ -431,7 +433,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 13,
                             Actors = "Cillian Murphy , Paul Anderson , Sophie Rundle",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2030),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3857),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "13-PeakyBlinders.jpg",
@@ -451,7 +453,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 14,
                             Actors = "Emilia Clarke , Peter Dinklage , Kit Harington",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2034),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3861),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "14-GameofThrones.jpg",
@@ -471,7 +473,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 15,
                             Actors = "Bryan Cranston , Aaron Paul , Anna Gunn",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2038),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3865),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "15-BreakingBad.jpg",
@@ -757,50 +759,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("SelectedMovies");
-
-                    b.HasData(
-                        new
-                        {
-                            SelectedMovieId = 1,
-                            ActorId = 1,
-                            ItemId = 15
-                        },
-                        new
-                        {
-                            SelectedMovieId = 2,
-                            ActorId = 2,
-                            ItemId = 4
-                        },
-                        new
-                        {
-                            SelectedMovieId = 3,
-                            ActorId = 3,
-                            ItemId = 2
-                        },
-                        new
-                        {
-                            SelectedMovieId = 4,
-                            ActorId = 4,
-                            ItemId = 2
-                        },
-                        new
-                        {
-                            SelectedMovieId = 5,
-                            ActorId = 5,
-                            ItemId = 5
-                        },
-                        new
-                        {
-                            SelectedMovieId = 6,
-                            ActorId = 6,
-                            ItemId = 4
-                        },
-                        new
-                        {
-                            SelectedMovieId = 7,
-                            ActorId = 6,
-                            ItemId = 6
-                        });
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Users", b =>
@@ -856,7 +814,7 @@ namespace NightOwl.DataLayer.Migrations
                             IpAddress = "192.168.1.127",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                             PhoneNumber = "09121111111",
-                            RegisterDate = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1741),
+                            RegisterDate = new DateTime(2022, 3, 27, 21, 23, 50, 256, DateTimeKind.Local).AddTicks(3608),
                             RoleId = 2,
                             Username = "Admin",
                             WalletId = 1

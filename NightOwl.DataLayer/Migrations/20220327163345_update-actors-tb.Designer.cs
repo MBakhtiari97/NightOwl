@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightOwl.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using NightOwl.DataLayer.Context;
 namespace NightOwl.DataLayer.Migrations
 {
     [DbContext(typeof(NightOwlContext))]
-    partial class NightOwlContextModelSnapshot : ModelSnapshot
+    [Migration("20220327163345_update-actors-tb")]
+    partial class updateactorstb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,58 +47,14 @@ namespace NightOwl.DataLayer.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("ItemsItemId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
                     b.HasKey("ActorId");
 
-                    b.HasIndex("ItemsItemId");
+                    b.HasIndex("ItemId");
 
                     b.ToTable("Actors");
-
-                    b.HasData(
-                        new
-                        {
-                            ActorId = 1,
-                            ActorGender = "Male",
-                            ActorImage = "Aaron Paul.jpg",
-                            ActorName = "Aaron Paul"
-                        },
-                        new
-                        {
-                            ActorId = 2,
-                            ActorGender = "Male",
-                            ActorImage = "Benedict Cumberbatch.jpg",
-                            ActorName = "Benedict Cumberbatch"
-                        },
-                        new
-                        {
-                            ActorId = 3,
-                            ActorGender = "Male",
-                            ActorImage = "Mark Ruffalo.jpg",
-                            ActorName = "Mark Ruffalo"
-                        },
-                        new
-                        {
-                            ActorId = 4,
-                            ActorGender = "Male",
-                            ActorImage = "Ryan Reynolds.jpg",
-                            ActorName = "Ryan Reynolds"
-                        },
-                        new
-                        {
-                            ActorId = 5,
-                            ActorGender = "Female",
-                            ActorImage = "Ana De Armas.jpg",
-                            ActorName = "Ana De Armas"
-                        },
-                        new
-                        {
-                            ActorId = 6,
-                            ActorGender = "Female",
-                            ActorImage = "Zendaya.jpg",
-                            ActorName = "Zendaya"
-                        });
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Categories", b =>
@@ -302,7 +260,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 1,
                             Actors = "Robert Pattinson , Zoë Kravitz , Jeffrey Wright",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1983),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8861),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "1-TheBatman.jpg",
@@ -321,7 +279,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 2,
                             Actors = "Ryan Reynolds , Walker Scobell , Mark Ruffalo",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1991),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8869),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "2-TheAdamProject.jpg",
@@ -339,7 +297,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 3,
                             Actors = "Rosalie Chiang , Sandra Oh , Ava Morse",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1995),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8873),
                             AgeRating = "PG",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "3-TurningRed.jpg",
@@ -357,7 +315,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 4,
                             Actors = "Tom Holland , Zendaya , Benedict Cumberbatch",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1999),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8876),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "4-Spider-Man:NoWayHome.jpg",
@@ -375,7 +333,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 5,
                             Actors = "Ben Affleck , Ana de Armas , Tracy Letts",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2003),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8880),
                             AgeRating = "R",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "5-DeepWater.jpg",
@@ -393,7 +351,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 6,
                             Actors = "Timothée Chalamet , Rebecca Ferguson , Zendaya",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2006),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8883),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "6-Dune.jpg",
@@ -411,7 +369,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 12,
                             Actors = "Alexander Dreymon , Eliza Butterworth , Arnas Fedaravicius",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2025),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8901),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "12-TheLastKingdom.jpg",
@@ -431,7 +389,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 13,
                             Actors = "Cillian Murphy , Paul Anderson , Sophie Rundle",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2030),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8907),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "13-PeakyBlinders.jpg",
@@ -451,7 +409,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 14,
                             Actors = "Emilia Clarke , Peter Dinklage , Kit Harington",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2034),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8911),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "14-GameofThrones.jpg",
@@ -471,7 +429,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 15,
                             Actors = "Bryan Cranston , Aaron Paul , Anna Gunn",
-                            AddedTime = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(2038),
+                            AddedTime = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8915),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "15-BreakingBad.jpg",
@@ -736,73 +694,6 @@ namespace NightOwl.DataLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("NightOwl.DataLayer.Entities.SelectedMovies", b =>
-                {
-                    b.Property<int>("SelectedMovieId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SelectedMovieId"), 1L, 1);
-
-                    b.Property<int>("ActorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SelectedMovieId");
-
-                    b.HasIndex("ActorId");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("SelectedMovies");
-
-                    b.HasData(
-                        new
-                        {
-                            SelectedMovieId = 1,
-                            ActorId = 1,
-                            ItemId = 15
-                        },
-                        new
-                        {
-                            SelectedMovieId = 2,
-                            ActorId = 2,
-                            ItemId = 4
-                        },
-                        new
-                        {
-                            SelectedMovieId = 3,
-                            ActorId = 3,
-                            ItemId = 2
-                        },
-                        new
-                        {
-                            SelectedMovieId = 4,
-                            ActorId = 4,
-                            ItemId = 2
-                        },
-                        new
-                        {
-                            SelectedMovieId = 5,
-                            ActorId = 5,
-                            ItemId = 5
-                        },
-                        new
-                        {
-                            SelectedMovieId = 6,
-                            ActorId = 6,
-                            ItemId = 4
-                        },
-                        new
-                        {
-                            SelectedMovieId = 7,
-                            ActorId = 6,
-                            ItemId = 6
-                        });
-                });
-
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Users", b =>
                 {
                     b.Property<int>("UserId")
@@ -856,7 +747,7 @@ namespace NightOwl.DataLayer.Migrations
                             IpAddress = "192.168.1.127",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                             PhoneNumber = "09121111111",
-                            RegisterDate = new DateTime(2022, 3, 27, 21, 30, 11, 456, DateTimeKind.Local).AddTicks(1741),
+                            RegisterDate = new DateTime(2022, 3, 27, 21, 3, 44, 946, DateTimeKind.Local).AddTicks(8655),
                             RoleId = 2,
                             Username = "Admin",
                             WalletId = 1
@@ -898,9 +789,13 @@ namespace NightOwl.DataLayer.Migrations
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Actors", b =>
                 {
-                    b.HasOne("NightOwl.DataLayer.Entities.Items", null)
+                    b.HasOne("NightOwl.DataLayer.Entities.Items", "Items")
                         .WithMany("Actor")
-                        .HasForeignKey("ItemsItemId");
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Galleries", b =>
@@ -963,25 +858,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("NightOwl.DataLayer.Entities.SelectedMovies", b =>
-                {
-                    b.HasOne("NightOwl.DataLayer.Entities.Actors", "Actors")
-                        .WithMany("SelectedMovies")
-                        .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NightOwl.DataLayer.Entities.Items", "Items")
-                        .WithMany("SelectedMovies")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Actors");
-
-                    b.Navigation("Items");
-                });
-
             modelBuilder.Entity("NightOwl.DataLayer.Entities.WalletTransactions", b =>
                 {
                     b.HasOne("NightOwl.DataLayer.Entities.Users", "Users")
@@ -991,11 +867,6 @@ namespace NightOwl.DataLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("NightOwl.DataLayer.Entities.Actors", b =>
-                {
-                    b.Navigation("SelectedMovies");
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Categories", b =>
@@ -1017,8 +888,6 @@ namespace NightOwl.DataLayer.Migrations
                     b.Navigation("SelectedCategory");
 
                     b.Navigation("SelectedGenres");
-
-                    b.Navigation("SelectedMovies");
                 });
 
             modelBuilder.Entity("NightOwl.DataLayer.Entities.Users", b =>

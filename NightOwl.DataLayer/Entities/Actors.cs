@@ -16,11 +16,11 @@ namespace NightOwl.DataLayer.Entities
         [MaxLength(250)]
         public string ActorName { get; set; }
         [MaxLength(250)]
+        public string ActorGender { get; set; }
+        [MaxLength(250)]
         public string ActorImage { get; set; }
-        public int ItemId { get; set; }
 
         //nav
-        [ForeignKey("ItemId")]
-        public Items Items { get; set; }
+        public List<SelectedMovies> SelectedMovies { get; set; }
     }
 }
