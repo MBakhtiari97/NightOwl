@@ -11,12 +11,33 @@
             <div class="col-12">
                 <div class="section__wrap">
                     <!-- section title -->
-                    <h2 class="section__title">@ViewBag.CategoryName</h2>
+                    @if (ViewBag.GenreName != null)
+                    {
+                        <h2 class="section__title">@ViewBag.GenreName</h2>
+                    }
+                    @if (ViewBag.CategoryName != null)
+                    {
+                        <h2 class="section__title">@ViewBag.CategoryName</h2>
+                    }
+
                     <!-- end section title -->
                     <!-- breadcrumb -->
                     <ul class="breadcrumb">
-                        <li class="breadcrumb__item"><a href="#">Home</a></li>
-                        <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.CategoryName</li>
+                        <li class="breadcrumb__item"><a href="/">Home</a></li>
+                        @if (ViewBag.GenreName != null)
+                        {
+                            <li class="breadcrumb__item"><a>Genre</a></li>
+                            <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.GenreName</li>
+                        }
+                        @if (ViewBag.CategoryName != null)
+                        {
+                            <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.CategoryName</li>
+                        }
+                        @if (ViewBag.Year != null)
+                        {
+                            <li class="breadcrumb__item"><a>Items By Year</a></li>
+                            <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.Year</li>
+                        }
                     </ul>
                     <!-- end breadcrumb -->
                 </div>
@@ -44,7 +65,7 @@
                             <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
                                 @foreach (var genre in genres)
                                 {
-                                    <li>@genre.GenreName</li> 
+                                    <li>@genre.GenreName</li>
                                 }
                             </ul>
                         </div>
@@ -118,51 +139,51 @@
             @foreach (var movie in Model)
             {
                 <!-- card -->
-            <div class="col-6 col-sm-12 col-lg-6">
-                <div class="card card--list">
-                    <div class="row">
-                        <div class="col-12 col-sm-4">
-                            <div class="card__cover">
-                                <img src="/img/Movies/@movie.Banner" alt="@movie.Title" class="img-thumbnail img-cover">
-                                <a href="/ShowDetails-@movie.ItemId" class="card__play">
-                                    <i class="icon ion-ios-arrow-down icon-down-little"></i>
-                                </a>
+                <div class="col-6 col-sm-12 col-lg-6">
+                    <div class="card card--list">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <div class="card__cover">
+                                    <img src="/img/Movies/@movie.Banner" alt="@movie.Title" class="img-thumbnail img-cover">
+                                    <a href="/ShowDetails-@movie.ItemId" class="card__play">
+                                        <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-sm-8">
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="/ShowDetails-@movie.ItemId">@movie.Title</a></h3>
-                                <span class="card__category">
-                                    @if (movie.SelectedGenres != null)
+                            <div class="col-12 col-sm-8">
+                                <div class="card__content">
+                                    <h3 class="card__title"><a href="/ShowDetails-@movie.ItemId">@movie.Title</a></h3>
+                                    <span class="card__category">
+                                        @if (movie.SelectedGenres != null)
                                         {
                                             @foreach (var genre in movie.SelectedGenres)
                                             {
-                                                <a href="#">@genre.Genres.GenreName</a>
+                                                <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a>
                                             }
                                         }
-                                       
-                                </span>
-                                <div class="card__wrap">
-                                    <span class="card__rate"><i class="icon ion-ios-star"></i>@movie.ImdbScore</span>
 
-                                    <ul class="card__list">
-                                        <li><a href="/SortByQuality-@movie.AvailableQualities">@movie.AvailableQualities</a></li>
-                                        <li><a href="/SortByAge-@movie.AgeRating">@movie.AgeRating</a></li>
-                                    </ul>
-                                </div>
+                                    </span>
+                                    <div class="card__wrap">
+                                        <span class="card__rate"><i class="icon ion-ios-star"></i>@movie.ImdbScore</span>
 
-                                <div class="card__description">
-                                    <p>@movie.Description</p>
+                                        <ul class="card__list">
+                                            <li><a href="/SortByQuality-@movie.AvailableQualities">@movie.AvailableQualities</a></li>
+                                            <li><a href="/SortByAge-@movie.AgeRating">@movie.AgeRating</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="card__description">
+                                        <p>@movie.Description</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- end card -->
+                <!-- end card -->
             }
-            
+
             <!-- paginator -->
             <div class="col-12">
                 <ul class="paginator paginator--list">
@@ -208,14 +229,14 @@
                             <span class="card__category">
                                 @foreach (var genre in movie.SelectedGenres)
                                 {
-                                    <a href="#">@genre.Genres.GenreName</a> 
+                                    <a href="#">@genre.Genres.GenreName</a>
                                 }
                             </span>
                             <span class="card__rate"><i class="icon ion-ios-star"></i>@movie.ImdbScore</span>
                         </div>
                     </div>
                 </div>
-                <!-- end card -->   
+                <!-- end card -->
             }
             <!-- section btn -->
             <div class="col-12">

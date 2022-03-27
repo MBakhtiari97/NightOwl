@@ -32,8 +32,8 @@
                                 <div class="card__wrap">
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>@Model.ImdbScore</span>
                                     <ul class="card__list">
-                                        <li>@Model.AvailableQualities</li>
-                                        <li>@Model.AgeRating</li>
+                                        <li><a href="/SortByQuality-@Model.AvailableQualities">@Model.AvailableQualities</a></li>
+                                        <li><a href="/SortByAge-@Model.AgeRating">@Model.AgeRating</a></li>
                                     </ul>
                                 </div>
 
@@ -42,10 +42,10 @@
                                         <span>Genre:</span>
                                         @foreach (var genre in @Model.SelectedGenres)
                                         {
-                                            <a href="#">@genre.Genres.GenreName</a>
+                                            <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a>
                                         }
                                     </li>
-                                    <li><span>Release year:</span> @Model.ReleaseYear</li>
+                                    <li><span>Release year:</span><a href="/SortByYear-@Model.ReleaseYear">@Model.ReleaseYear</a></li>
                                     @if (Model.EndRunningYear != null)
                                     {
                                         <li><span>Release year:</span> @Model.EndRunningYear</li>

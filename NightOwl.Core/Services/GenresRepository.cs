@@ -22,5 +22,10 @@ namespace NightOwl.Core.Services
         {
             return _context.Genres.ToList();
         }
+
+        public string GetGenreNameByGenreId(int genreId)
+        {
+            return _context.Genres.Single(g => g.GenreId == genreId).GenreName;
+        }
     }
 }

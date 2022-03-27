@@ -67,9 +67,18 @@ namespace NightOwl.Web.Controller
         [Route("Genre-{genreId}")]
         public IActionResult ShowMoviesByGenre(int genreId)
         {
+            ViewBag.GenreName = _genresRepository.GetGenreNameByGenreId(genreId);
             ViewBag.Genres = _genresRepository.GetAllGenres();
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByGenreId(genreId));
+        }
+        [Route("SortByYear-{year}")]
+        public IActionResult ShowMoviesByYear(string year)
+        {
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
+            ViewBag.Year = year;
+            return View("_ShowMoviesList", _movieRepository.GetMoviesByReleaseYear(year));
         }
     }
 }

@@ -85,6 +85,15 @@ namespace NightOwl.Core.Services
                 .ToList();
         }
 
+        public List<Items> GetMoviesByReleaseYear(string year)
+        {
+            return _context.Items
+                .Where(i => i.ReleaseYear == year)
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .ToList();
+        }
+
         public List<Items> GetSimilarMovies(int genreId)
         {
             return _context.SelectedGenres

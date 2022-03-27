@@ -52,5 +52,6 @@ namespace NightOwl.DataLayer.Entities
         public List<SelectedGenres> SelectedGenres { get; set; }
         public List<SelectedCategory> SelectedCategory { get; set; }
         public List<Galleries> Galleries { get; set; }
+        public List<Actors> Actor { get; set; }
     }
 }

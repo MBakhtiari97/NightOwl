@@ -10,5 +10,6 @@ namespace NightOwl.Core.Services.Interfaces
     public interface IGenresRepository
     {
         List<Genres> GetAllGenres();
+        string GetGenreNameByGenreId(int genreId);
     }
 }
