@@ -2,9 +2,33 @@
     max-height: 380px;
     border-radius: 10px;
 }
+
 .icon-down {
-    margin: 25px 5px 10px 5px !important; 
+    margin: 25px 5px 10px 5px !important;
 }
+
 .icon-down-little {
     margin: 20px 5px 10px 5px !important;
 }
+
+.download-links {
+    color: #fffaf0;
+    padding-top: 10px;
+    text-align: center;
+}
+
+    .download-links a {
+        border: 1px solid #fffaf0;
+        color: #fffaf0;
+        background-color: #FF5691;
+        margin-left: 5px;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+        .download-links a:hover {
+            color: #FF5691;
+            background-color: #fffaf0;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
