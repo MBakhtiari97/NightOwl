@@ -50,12 +50,26 @@ namespace NightOwl.Web.Controller
                 return View("_SingleItemDetails",movieDetails);
             }
         }
-        [Route("Sort-{ageRating}")]
+        [Route("SortByAge-{ageRating}")]
         public IActionResult ShowMoviesByAgeRating(string ageRating)
         {
             ViewBag.Genres = _genresRepository.GetAllGenres();
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByAge(ageRating));
+        }
+        [Route("SortByQuality-{quality}")]
+        public IActionResult ShowMoviesByQuality(string quality)
+        {
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
+            return View("_ShowMoviesList", _movieRepository.GetMoviesByQuality(quality));
+        }
+        [Route("Genre-{genreId}")]
+        public IActionResult ShowMoviesByGenre(int genreId)
+        {
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
+            return View("_ShowMoviesList", _movieRepository.GetMoviesByGenreId(genreId));
         }
     }
 }

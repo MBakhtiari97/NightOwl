@@ -67,6 +67,24 @@ namespace NightOwl.Core.Services
                 .ToList();
         }
 
+        public List<Items> GetMoviesByGenreId(int genreId)
+        {
+           return _context.SelectedGenres
+                .Where(g => g.GenreId == genreId)
+                .Select(g => g.Items)
+                .OrderByDescending(g => g.AddedTime)
+                .ToList();
+        }
+
+        public List<Items> GetMoviesByQuality(string quality)
+        {
+            return _context.Items
+                .Where(i => i.AvailableQualities.Contains(quality))
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .ToList();
+        }
+
         public List<Items> GetSimilarMovies(int genreId)
         {
             return _context.SelectedGenres

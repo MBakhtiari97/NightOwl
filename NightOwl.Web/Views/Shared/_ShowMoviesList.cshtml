@@ -134,17 +134,21 @@
                             <div class="card__content">
                                 <h3 class="card__title"><a href="/ShowDetails-@movie.ItemId">@movie.Title</a></h3>
                                 <span class="card__category">
-                                    @foreach (var genre in movie.SelectedGenres)
+                                    @if (movie.SelectedGenres != null)
                                         {
-                                            <a href="#">@genre.Genres.GenreName</a>
+                                            @foreach (var genre in movie.SelectedGenres)
+                                            {
+                                                <a href="#">@genre.Genres.GenreName</a>
+                                            }
                                         }
+                                       
                                 </span>
                                 <div class="card__wrap">
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>@movie.ImdbScore</span>
 
                                     <ul class="card__list">
-                                        <li>@movie.AvailableQualities</li>
-                                        <li><a href="/Sort-@movie.AgeRating">@movie.AgeRating</a></li>
+                                        <li><a href="/SortByQuality-@movie.AvailableQualities">@movie.AvailableQualities</a></li>
+                                        <li><a href="/SortByAge-@movie.AgeRating">@movie.AgeRating</a></li>
                                     </ul>
                                 </div>
 
