@@ -38,6 +38,11 @@
                             <li class="breadcrumb__item"><a>Items By Year</a></li>
                             <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.Year</li>
                         }
+                        @if (ViewBag.Phrase != null)
+                        {
+                            <li class="breadcrumb__item"><a>Search</a></li>
+                            <li class="breadcrumb__item breadcrumb__item--active">@ViewBag.Phrase</li>
+                        }
                     </ul>
                     <!-- end breadcrumb -->
                 </div>

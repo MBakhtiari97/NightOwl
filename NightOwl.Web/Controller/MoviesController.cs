@@ -42,6 +42,7 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByCategoryId(categoryId));
         }
+
         [Route("ShowDetails-{itemId}")]
         public IActionResult ShowMovieDetails(int itemId)
         {
@@ -58,6 +59,7 @@ namespace NightOwl.Web.Controller
                 return View("_SingleItemDetails",movieDetails);
             }
         }
+
         [Route("SortByAge-{ageRating}")]
         public IActionResult ShowMoviesByAgeRating(string ageRating)
         {
@@ -65,6 +67,7 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByAge(ageRating));
         }
+
         [Route("SortByQuality-{quality}")]
         public IActionResult ShowMoviesByQuality(string quality)
         {
@@ -72,6 +75,7 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByQuality(quality));
         }
+
         [Route("Genre-{genreId}")]
         public IActionResult ShowMoviesByGenre(int genreId)
         {
@@ -80,6 +84,7 @@ namespace NightOwl.Web.Controller
             ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
             return View("_ShowMoviesList", _movieRepository.GetMoviesByGenreId(genreId));
         }
+
         [Route("SortByYear-{year}")]
         public IActionResult ShowMoviesByYear(string year)
         {
@@ -88,6 +93,7 @@ namespace NightOwl.Web.Controller
             ViewBag.Year = year;
             return View("_ShowMoviesList", _movieRepository.GetMoviesByReleaseYear(year));
         }
+
         [Route("SortByActor-{actorName}")]
         public IActionResult ShowMoviesByActorName(string actorName)
         {
@@ -95,6 +101,16 @@ namespace NightOwl.Web.Controller
             ViewBag.ActorImage = _actorsRepository.GetActorImage(actorName);
 
             return View("_ShowActorsMovies", _movieRepository.GetMoviesByActorName(actorName));
+        }
+
+        [HttpPost]
+        [Route("/Search")]
+        public IActionResult ShowMoviesBySearchPhrase(string q)
+        {
+            ViewBag.Genres = _genresRepository.GetAllGenres();
+            ViewBag.LatestMovies = _movieRepository.GetLatestMovies();
+            ViewBag.Phrase = q;
+            return View("_ShowMoviesList", _movieRepository.GetMoviesBySearchPhrase(q));
         }
     }
 }

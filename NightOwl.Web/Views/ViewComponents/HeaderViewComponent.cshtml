@@ -102,14 +102,14 @@
     </div>
 
     <!-- header search -->
-    <form action="#" class="header__search">
+    <form class="header__search" asp-action="ShowMoviesBySearchPhrase" asp-controller="Movies">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="header__search-content">
-                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+                        <input type="text" name="q" placeholder="Search for a movie, TV Series , Actor or director that you are looking for" required>
 
-                        <button type="button">search</button>
+                        <button type="submit">search</button>
                     </div>
                 </div>
             </div>

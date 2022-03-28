@@ -78,11 +78,11 @@ namespace NightOwl.Core.Services
 
         public List<Items> GetMoviesByGenreId(int genreId)
         {
-           return _context.SelectedGenres
-                .Where(g => g.GenreId == genreId)
-                .Select(g => g.Items)
-                .OrderByDescending(g => g.AddedTime)
-                .ToList();
+            return _context.SelectedGenres
+                 .Where(g => g.GenreId == genreId)
+                 .Select(g => g.Items)
+                 .OrderByDescending(g => g.AddedTime)
+                 .ToList();
         }
 
         public List<Items> GetMoviesByQuality(string quality)
@@ -100,6 +100,18 @@ namespace NightOwl.Core.Services
                 .Where(i => i.ReleaseYear == year)
                 .Include(i => i.SelectedGenres)
                 .ThenInclude(i => i.Genres)
+                .ToList();
+        }
+
+        public List<Items> GetMoviesBySearchPhrase(string searchPhrase)
+        {
+            return _context.Items.Where(i =>
+                    i.Title.Contains(searchPhrase) ||
+                    i.Actors.Contains(searchPhrase) ||
+                    i.Director.Contains(searchPhrase))
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .Distinct()
                 .ToList();
         }
 
