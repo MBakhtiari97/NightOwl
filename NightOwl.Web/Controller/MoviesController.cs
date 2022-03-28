@@ -92,10 +92,9 @@ namespace NightOwl.Web.Controller
         public IActionResult ShowMoviesByActorName(string actorName)
         {
             ViewBag.ActorName = actorName;
-            ViewBag.AcorImage = _actorsRepository.GetActorImage(actorName);
+            ViewBag.ActorImage = _actorsRepository.GetActorImage(actorName);
 
-            //TODO:CHECK SEE WHY IF STATE GET INSIDE THE CYCLE
-            return View("_ShowMoviesList", _movieRepository.GetMoviesByActorName(actorName));
+            return View("_ShowActorsMovies", _movieRepository.GetMoviesByActorName(actorName));
         }
     }
 }

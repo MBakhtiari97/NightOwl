@@ -41,6 +41,9 @@
     border-radius: 5px;
     border: #fffaf0 1px solid;
 }
-.actors-page h3 {
+.actors-page h3,h2 {
     text-align: center;
+}
+.actors-movies-page {
+    margin-top: 50px;
 }
