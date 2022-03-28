@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Security.Claims;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -33,9 +34,9 @@ builder.Services.AddDbContext<NightOwlContext>(options =>
 
 #region IoC
 
-builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
-builder.Services.AddScoped<IGenresRepository,GenresRepository>();
-builder.Services.AddScoped<IMovieRepository,MovieRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IGenresRepository, GenresRepository>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 
 #endregion
@@ -65,6 +66,16 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor |
                        ForwardedHeaders.XForwardedProto
+});
+
+app.Use(async (context, next) =>
+{
+    await next();
+    if (context.Response.StatusCode == 404)
+    {
+        context.Request.Path = "/404";
+        await next();
+    }
 });
 
 app.UseHttpsRedirection();
