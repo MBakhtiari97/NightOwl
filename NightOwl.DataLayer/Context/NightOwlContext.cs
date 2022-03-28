@@ -27,6 +27,7 @@ namespace NightOwl.DataLayer.Context
         public DbSet<SelectedCategory> SelectedCategories { get; set; }
         public DbSet<Galleries> Galleries { get; set; }
         public DbSet<Actors> Actors { get; set; }
+        public DbSet<Download> Download { get; set; }
 
         #endregion
 

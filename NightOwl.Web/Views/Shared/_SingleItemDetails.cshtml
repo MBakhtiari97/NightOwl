@@ -113,19 +113,25 @@
                 <h2 class="content__title">Download Box :</h2>
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-6 text-center">
-                            <!--DYNAMIC THIS PART-->
-                            <p>4k : (Size:24.67 GB)</p>
-                            <p>1080p : (Size:3.76 GB)</p>
-                            <p>720p : (Size:1.15 GB)</p>
-                            <p>480p : (Size:897 MB)</p>
-                        </div>
-                        <div class="col-6">
-                            <p><a href="#">Download</a></p>
-                            <p><a href="#">Download</a></p>
-                            <p><a href="#">Download</a></p>
-                            <p><a href="#">Download</a></p>
-                        </div>
+                       @if (Model.Downloads.Any())
+                        {
+                            <div class="col-6 text-center">
+                                @foreach (var download in Model.Downloads)
+                                {
+                                    <p>@download.QualityDetails : (Size:@download.ItemSize)</p>
+                                }
+                            </div>
+                            <div class="col-6">
+                                @foreach (var download in Model.Downloads)
+                                {
+                                    <p><a href="@download.DownloadLink">Download</a></p>
+                                }
+                            </div>
+                        }
+                       else
+                       {
+                           <p>Coming Soon ...</p>
+                       }
                     </div>
                 </div>
             </div>

@@ -44,6 +44,7 @@ namespace NightOwl.Core.Services
             return _context.Items
                 .Include(i => i.SelectedGenres)
                 .ThenInclude(i => i.Genres)
+                .Include(i=>i.Downloads)
                 .SingleOrDefault(i => i.ItemId == itemId);
         }
 

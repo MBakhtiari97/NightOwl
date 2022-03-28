@@ -97,10 +97,19 @@ namespace NightOwl.Web.Controller
         [Route("SortByActor-{actorName}")]
         public IActionResult ShowMoviesByActorName(string actorName)
         {
-            ViewBag.ActorName = actorName;
-            ViewBag.ActorImage = _actorsRepository.GetActorImage(actorName);
+            var moviesModel = _movieRepository.GetMoviesByActorName(actorName);
 
-            return View("_ShowActorsMovies", _movieRepository.GetMoviesByActorName(actorName));
+            if (!moviesModel.Any())
+            {
+                return RedirectToAction("PageNotFound","Error");
+            }
+            else
+            {
+                ViewBag.ActorName = actorName;
+                ViewBag.ActorImage = _actorsRepository.GetActorImage(actorName);
+
+                return View("_ShowActorsMovies", moviesModel);
+            }
         }
 
         [HttpPost]

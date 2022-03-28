@@ -22,8 +22,7 @@ namespace NightOwl.Core.Services
         public string GetActorImage(string actorName)
         {
             return _context.Actors
-                .Single(a=>a.ActorName==actorName)
-                .ActorImage;
+                .Single(a => a.ActorName == actorName).ActorImage;
         }
 
         public List<Actors> GetActorsByGender(string gender)
