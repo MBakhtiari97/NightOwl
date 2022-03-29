@@ -21,5 +21,15 @@ namespace NightOwl.Web.Controller
             ViewBag.NewSeries = _movieRepository.GetNewSeries();
             return View();
         }
+        [Route("ContactUs")]
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+        [Route("AboutUs")]
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }
