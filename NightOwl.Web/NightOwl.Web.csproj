@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Area\Pages\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\admin-resources\vendor\font-awesome\less\" />
+    <Folder Include="wwwroot\admin-resources\vendor\font-awesome\scss\" />
   </ItemGroup>
 
 </Project>
