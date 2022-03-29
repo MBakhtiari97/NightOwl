@@ -17,9 +17,6 @@ namespace NightOwl.DataLayer.Context
         }
 
         #region Entities
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Roles> Roles { get; set; }
-        public DbSet<WalletTransactions> WalletTransactions { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Genres> Genres { get; set; }
         public DbSet<Items> Items { get; set; }
@@ -36,39 +33,6 @@ namespace NightOwl.DataLayer.Context
             base.OnModelCreating(modelBuilder);
 
             #region SeedData
-
-            #region Users
-
-            modelBuilder.Entity<Users>().HasData(new Users()
-            {
-                RoleId = 2,
-                EmailAddress = "pzix886@gmail.com",
-                UserId = 1,
-                IpAddress = "192.168.1.127",
-                Password = PasswordHelper.EncodePasswordMd5("123"),
-                PhoneNumber = "09121111111",
-                RegisterDate = DateTime.Now,
-                Username = "Admin",
-                WalletId = 1
-            });
-
-            #endregion
-
-            #region Roles
-
-            //modelBuilder.Entity<Roles>().HasData(new Roles()
-            //{
-            //    RoleId = 1,
-            //    RoleName = "User"
-            //},
-            //    new Roles()
-            //    {
-            //        RoleId = 2,
-            //        RoleName = "Admin"
-            //    });
-
-
-            #endregion
 
             #region Categories
 

@@ -1397,7 +1397,9 @@
     <script src="DefaultLayout/js/jquery.morelines.min.js"></script>
     <script src="DefaultLayout/js/photoswipe.min.js"></script>
     <script src="DefaultLayout/js/photoswipe-ui-default.min.js"></script>
-    <script src="DefaultLayout/js/main.js"></script>
+<script src="DefaultLayout/js/main.js"></script>
+@await Component.InvokeAsync("Notyf")
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
