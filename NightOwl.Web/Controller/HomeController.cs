@@ -15,6 +15,10 @@ namespace NightOwl.Web.Controller
         public IActionResult Index()
         {
             ViewBag.Latest = _movieRepository.GetLatest();
+            ViewBag.ComingSoon = _movieRepository.GetComingSoon();
+            ViewBag.NewAnimations = _movieRepository.GetNewAnimations();
+            ViewBag.NewMovies = _movieRepository.GetNewMovies();
+            ViewBag.NewSeries = _movieRepository.GetNewSeries();
             return View();
         }
     }

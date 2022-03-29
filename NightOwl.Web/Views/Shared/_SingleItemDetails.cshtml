@@ -38,13 +38,16 @@
                                 </div>
 
                                 <ul class="card__meta">
-                                    <li>
-                                        <span>Genre:</span>
-                                        @foreach (var genre in @Model.SelectedGenres)
-                                        {
-                                            <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a>
-                                        }
-                                    </li>
+                                    @if (Model.SelectedGenres.Any())
+                                    {
+                                        <li>
+                                            <span>Genre:</span>
+                                            @foreach (var genre in @Model.SelectedGenres)
+                                            {
+                                                <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a>
+                                            }
+                                        </li>
+                                    }
                                     <li><span>Release year:</span><a href="/SortByYear-@Model.ReleaseYear">@Model.ReleaseYear</a></li>
                                     @if (Model.EndRunningYear != null)
                                     {

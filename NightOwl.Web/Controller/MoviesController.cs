@@ -53,9 +53,15 @@ namespace NightOwl.Web.Controller
             }
             else
             {
-                var genreId = movieDetails.SelectedGenres.First().GenreId;
-                ViewBag.SimilarItems = _movieRepository.GetSimilarMovies(genreId);
-
+                if (movieDetails.SelectedGenres.Any())
+                {
+                    var genreId = movieDetails.SelectedGenres.First().GenreId;
+                    ViewBag.SimilarItems = _movieRepository.GetSimilarMovies(genreId);
+                }
+                else
+                {
+                    ViewBag.SimilarItems = _movieRepository.GetLatest();
+                }
                 return View("_SingleItemDetails",movieDetails);
             }
         }

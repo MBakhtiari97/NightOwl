@@ -19,6 +19,16 @@ namespace NightOwl.Core.Services
             _context = context;
         }
 
+        public List<Items> GetComingSoon()
+        {
+            return _context.Items
+                .Where(i => i.ReleaseYear == "-")
+                .Include(i => i.SelectedGenres)
+                .ThenInclude(i => i.Genres)
+                .Take(6)
+                .ToList();
+        }
+
         public List<Items> GetLatest()
         {
             return _context.Items
@@ -113,6 +123,42 @@ namespace NightOwl.Core.Services
                 .Include(i => i.SelectedGenres)
                 .ThenInclude(i => i.Genres)
                 .Distinct()
+                .ToList();
+        }
+
+        public List<Items> GetNewAnimations()
+        {
+            return _context.SelectedGenres
+                .Where(g => g.GenreId == 7)
+                .Select(g => g.Items)
+                .OrderByDescending(g=>g.AddedTime)
+                .Take(12)
+                .ToList();
+        }
+
+        public List<Items> GetNewMovies()
+        {
+            return _context.SelectedCategories
+                .Where(c => c.CategoryId == 1)
+                .Include(c => c.Items)
+                .ThenInclude(c => c.SelectedGenres)
+                .ThenInclude(c => c.Genres)
+                .Select(c => c.Items)
+                .OrderByDescending(c => c.AddedTime)
+                .Take(12)
+                .ToList();
+        }
+
+        public List<Items> GetNewSeries()
+        {
+            return _context.SelectedCategories
+                .Where(c => c.CategoryId == 2)
+                .Include(c => c.Items)
+                .ThenInclude(c => c.SelectedGenres)
+                .ThenInclude(c => c.Genres)
+                .Select(c => c.Items)
+                .OrderByDescending(c => c.AddedTime)
+                .Take(12)
                 .ToList();
         }
 

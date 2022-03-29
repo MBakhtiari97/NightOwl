@@ -236,6 +236,63 @@ namespace NightOwl.DataLayer.Context
                     Title = "Dune",
                     AddedTime = DateTime.Now,
                     TrailerLink = "https://www.youtube.com/embed/8g18jFHCLXk"
+                },
+                new Items()
+                {
+                    ItemId = 16,
+                    Language = "Eng",
+                    MetaCriticScore = "46",
+                    RunningTime = "136'",
+                    Actors = "Jake Gyllenhaal , Yahya Abdul - Mateen , IIEiza González",
+                    AgeRating = "R",
+                    Banner = "16-Ambulance.jpg",
+                    Description = "Two robbers steal an ambulance after their heist goes awry.",
+                    AvailableQualities = "Coming Soon",
+                    Director = "Michael Bay",
+                    ImdbScore = "6.5",
+                    Title = "Ambulance",
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/7NU-STboFeI"
+                },
+                new Items()
+                {
+                    ItemId = 17,
+                    Language = "Eng",
+                    RunningTime = "142'",
+                    Actors = "Mads Mikkelsen , Ezra Miller , Katherine Waterston",
+                    AgeRating = "PG-13",
+                    Banner = "17-FantasticBeastsTheSecretsOfDumbledore.jpg",
+                    Description = "The third installment of Fantastic Beasts and Where to Find Them,which follows the continuing adventures of Newt Scamander.",
+                    Director = "David Yates",
+                    Title = "Fantastic Beasts: The Secrets of Dumbledore",
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/DaM_wL1ZOM4"
+                },
+                new Items()
+                {
+                    ItemId = 18,
+                    Language = "Eng",
+                    Actors = "Mel Gibson , Mark Wahlberg , Jacki Weaver",
+                    AgeRating = "R",
+                    Banner = "18-FatherStu.jpg",
+                    Description = "Follows the life of Father Stuart Long, a boxer-turned-priest who inspired countless people during his journey from self-destruction to redemption.",
+                    Director = "Rosalind Ross",
+                    Title = "Father Stu",
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/DHREzAdyCPs"
+                },
+                new Items()
+                {
+                    ItemId = 19,
+                    Language = "Eng",
+                    Actors = "Liam Neeson , Monica Bellucci , Ray Stevenson",
+                    AgeRating = "R",
+                    Banner = "19-Memory.jpg",
+                    Description = "An assassin-for-hire finds that he's become a target after he refuses to complete a job for a dangerous criminal organization. A remake of the 2003 Belgian film 'The Memory of a Killer",
+                    Director = "Martin Campbell",
+                    Title = "Memory",
+                    AddedTime = DateTime.Now,
+                    TrailerLink = "https://www.youtube.com/embed/6OS_LxM6y7o"
                 });
 
             #endregion
@@ -565,6 +622,32 @@ namespace NightOwl.DataLayer.Context
             });
 
             #endregion
+
+            #endregion
+
+            #region SettingDefaultValue
+
+            modelBuilder.Entity<Items>()
+                .Property(b => b.AgeRating)
+                .HasDefaultValue("PG-13");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.AvailableQualities)
+                .HasDefaultValue("-");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.Banner)
+                .HasDefaultValue("Default.png");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.ImdbScore)
+                .HasDefaultValue("-");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.RottenTomatoScore)
+                .HasDefaultValue("-");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.RunningTime)
+                .HasDefaultValue("-");
+            modelBuilder.Entity<Items>()
+                .Property(b => b.ReleaseYear)
+                .HasDefaultValue("-");
 
             #endregion
 

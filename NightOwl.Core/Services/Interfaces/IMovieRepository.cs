@@ -20,6 +20,10 @@ namespace NightOwl.Core.Services.Interfaces
         List<Items> GetMoviesByReleaseYear(string year);
         List<Items> GetMoviesByActorName(string actorName);
         List<Items> GetMoviesBySearchPhrase(string searchPhrase);
+        List<Items> GetNewMovies();
+        List<Items> GetNewSeries();
+        List<Items> GetNewAnimations();
+        List<Items> GetComingSoon();
 
 
     }

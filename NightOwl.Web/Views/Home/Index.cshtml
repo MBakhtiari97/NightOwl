@@ -1,6 +1,272 @@
-﻿
+﻿@using NightOwl.DataLayer.Entities
+@model NightOwl.DataLayer.Entities.Items
 @{
     ViewData["Title"] = "Home";
+    List<Items> newMovies = ViewBag.NewMovies;
+    List<Items> newSeries = ViewBag.NewSeries;
+    List<Items> newAnimations = ViewBag.NewAnimations;
+    List<Items> comingSoonItems = ViewBag.ComingSoon;
+    List<Items> latestItems = ViewBag.Latest;
 }
 
 <partial name="_SliderPartial" model="@ViewBag.Latest"/>
+
+
+<section class="content">
+<div class="content__head">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- content title -->
+                <h2 class="content__title">New items</h2>
+                <!-- end content title -->
+
+                <!-- content tabs nav -->
+                <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">NEW RELEASES</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">MOVIES</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">TV SERIES</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">ANIMATIONS</a>
+                    </li>
+                </ul>
+                <!-- end content tabs nav -->
+
+                <!-- content mobile tabs nav -->
+                <div class="content__mobile-tabs" id="content__mobile-tabs">
+                    <div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <input type="button" value="New items">
+                        <span></span>
+                    </div>
+
+                    <div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" data-value="new releases"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">NEW RELEASES</a></li>
+
+                            <li class="nav-item" data-value="movies"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">MOVIES</a></li>
+
+                            <li class="nav-item" data-value="tv series"><a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">TV SERIES</a></li>
+
+                            <li class="nav-item" data-value="cartoons"><a class="nav-link" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">ANIMATIONS</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end content mobile tabs nav -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<!-- content tabs -->
+<div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+    <div class="row">
+        @foreach (var newItem in latestItems)
+                    {
+                        <!-- card -->
+                        <div class="col-6 col-sm-12 col-lg-6">
+                            <div class="card card--list">
+                                <div class="row">
+                                    <div class="col-12 col-sm-4">
+                                        <div class="card__cover">
+                                            <img src="/img/Movies/@newItem.Banner" alt="@newItem.Title" class="img-cover">
+                                            <a href="/ShowDetails-@newItem.ItemId" class="card__play">
+                                                <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-8">
+                                        <div class="card__content">
+                                            <h3 class="card__title"><a href="/ShowDetails-@newItem.ItemId">@newItem.Title</a></h3>
+                                            <span class="card__category">
+                                                @if (newItem.SelectedGenres.Any())
+                                                {
+                                                    @foreach (var genre in newItem.SelectedGenres)
+                                                    {
+                                                        <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a> 
+                                                    }
+                                                }
+                                                
+                                            </span>
+
+                                            <div class="card__wrap">
+                                                <span class="card__rate"><i class="icon ion-ios-star"></i>@newItem.ImdbScore</span>
+
+                                                <ul class="card__list">
+                                                    <li><a href="/SortByQuality-@newItem.AvailableQualities">@newItem.AvailableQualities</a></li>
+                                                    <li><a href="/SortByAge-@newItem.AgeRating">@newItem.AgeRating</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="card__description">
+                                                <p>@newItem.Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    }
+    </div>
+</div>
+
+<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+    <div class="row">
+        @foreach (var newMovie in newMovies)
+                    {
+                        <!-- card -->
+                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            <div class="card">
+                                <div class="card__cover">
+                                    <img src="/img/Movies/@newMovie.Banner" alt="@newMovie.Title" class="img-cover">
+                                    <a href="/ShowDetails-@newMovie.ItemId" class="card__play">
+                                        <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                                    </a>
+                                </div>
+                                <div class="card__content">
+                                    <h3 class="card__title"><a href="/ShowDetails-@newMovie.ItemId">@newMovie.Title</a></h3>
+                                    <span class="card__category">
+                                        @if (newMovie.SelectedGenres.Any())
+                                        {
+                                            @foreach (var genre in newMovie.SelectedGenres)
+                                            {
+                                                <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a> 
+                                            }
+                                        }
+
+                                    </span>
+                                    <span class="card__rate"><i class="icon ion-ios-star"></i>@newMovie.ImdbScore</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    }
+                   
+    </div>
+</div>
+
+<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+<div class="row">
+    @foreach (var newSerie in newSeries)
+    {
+        <!-- card -->
+        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+            <div class="card">
+                <div class="card__cover">
+                    <img src="/img/Movies/@newSerie.Banner" alt="@newSerie.Title" class="img-cover">
+                    <a href="/ShowDetails-@newSerie.ItemId" class="card__play">
+                        <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                    </a>
+                </div>
+                <div class="card__content">
+                    <h3 class="card__title"><a href="/ShowDetails-@newSerie.ItemId">@newSerie.Title</a></h3>
+                    <span class="card__category">
+                        @if (newSerie.SelectedGenres.Any())
+                        {
+                            @foreach (var genre in newSerie.SelectedGenres)
+                            {
+                                <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a> 
+                            }
+                        }
+
+                    </span>
+                    <span class="card__rate"><i class="icon ion-ios-star"></i>@newSerie.ImdbScore</span>
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    }
+</div>
+</div>
+
+<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="4-tab">
+<div class="row">
+    @foreach (var newAnim in newAnimations)
+    {
+        <!-- card -->
+        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+            <div class="card">
+                <div class="card__cover">
+                    <img src="/img/Movies/@newAnim.Banner" alt="@newAnim.Title" class="img-cover">
+                    <a href="/ShowDetails-@newAnim.ItemId" class="card__play">
+                        <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                    </a>
+                </div>
+                <div class="card__content">
+                    <h3 class="card__title"><a href="/ShowDetails-@newAnim.ItemId">@newAnim.Title</a></h3>
+                    <span class="card__category">
+                        @if (newAnim.SelectedGenres.Any())
+                        {
+                            @foreach (var genre in newAnim.SelectedGenres)
+                            {
+                                <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a> 
+                            }
+                        }
+
+                    </span>
+                    <span class="card__rate"><i class="icon ion-ios-star"></i>@newAnim.ImdbScore</span>
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    }
+</div>
+</div>
+</div>
+<!-- end content tabs -->
+</div>
+</section>
+
+
+<section class="section section--bg" data-bg="img/section/section.jpg" style="background: url(&quot;img/section/section.jpg&quot;) center center / cover no-repeat;">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-12">
+                <h2 class="section__title">Expected premiere</h2>
+            </div>
+            <!-- end section title -->
+            @foreach (var comingSoon in comingSoonItems)
+            {
+                <!-- card -->
+                <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                    <div class="card">
+                        <div class="card__cover">
+                            <img src="/img/Movies/@comingSoon.Banner" alt="@comingSoon.Title" class="img-cover">
+                            <a href="/ShowDetails-@comingSoon.ItemId" class="card__play">
+                                <i class="icon ion-ios-arrow-down icon-down-little"></i>
+                            </a>
+                        </div>
+                        <div class="card__content">
+                            <h3 class="card__title"><a href="/ShowDetails-@comingSoon.ItemId">@comingSoon.Title</a></h3>
+                            <span class="card__category">
+                                @if (comingSoon.SelectedGenres.Any())
+                                {
+                                    @foreach (var genre in comingSoon.SelectedGenres)
+                                    {
+                                        <a href="/Genre-@genre.GenreId">@genre.Genres.GenreName</a> 
+                                    }
+                                }
+
+                            </span>
+                            <span class="card__rate"><i class="icon ion-ios-star"></i>@comingSoon.ImdbScore</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            }
+        </div>
+    </div>
+</section>
