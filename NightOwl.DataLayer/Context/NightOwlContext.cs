@@ -25,6 +25,8 @@ namespace NightOwl.DataLayer.Context
         public DbSet<Galleries> Galleries { get; set; }
         public DbSet<Actors> Actors { get; set; }
         public DbSet<Download> Download { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<Admins> Admins { get; set; }
 
         #endregion
 
