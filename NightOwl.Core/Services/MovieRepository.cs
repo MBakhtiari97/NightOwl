@@ -171,5 +171,20 @@ namespace NightOwl.Core.Services
                 .Take(6)
                 .ToList();
         }
+
+        public int GetTotalComingSoon()
+        {
+            return _context.Items.Count(i => i.ReleaseYear == "-");
+        }
+
+        public int GetTotalMovies()
+        {
+            return _context.SelectedCategories.Count(c => c.CategoryId == 1);
+        }
+
+        public int GetTotalSeries()
+        {
+            return _context.SelectedCategories.Count(c => c.CategoryId == 2);
+        }
     }
 }

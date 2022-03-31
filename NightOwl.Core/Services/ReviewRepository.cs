@@ -24,6 +24,11 @@ namespace NightOwl.Core.Services
            return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
         }
 
+        public int GetTotalReviews()
+        {
+            return _context.Reviews.Count();
+        }
+
         public bool SubmitReview(Reviews newReview)
         {
             _context.Reviews.Add(newReview);

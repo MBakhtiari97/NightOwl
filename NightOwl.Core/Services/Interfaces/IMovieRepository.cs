@@ -24,7 +24,9 @@ namespace NightOwl.Core.Services.Interfaces
         List<Items> GetNewSeries();
         List<Items> GetNewAnimations();
         List<Items> GetComingSoon();
-
+        int GetTotalMovies();
+        int GetTotalSeries();
+        int GetTotalComingSoon();
 
     }
 }
