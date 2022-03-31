@@ -22,7 +22,8 @@ namespace NightOwl.DataLayer.Entities
         [MaxLength(1200)]
         public string ReviewDescription { get; set; }
         [Required]
-        public float ReviewRating { get; set; }
+        [MaxLength(50)]
+        public string ReviewRating { get; set; }
         public DateTime ReviewDate { get; set; }
         [MaxLength(50)]
         public string? ReviewerIpAddress { get; set; }

@@ -454,7 +454,8 @@ $(document).ready(function () {
 
 	/*3*/
 	function initializeThirdSlider() {
-		if ($('#slider__rating').length) {
+
+        if ($('#slider__rating').length) {
 			var thirdSlider = document.getElementById('slider__rating');
 			noUiSlider.create(thirdSlider, {
 				range: {
@@ -465,7 +466,7 @@ $(document).ready(function () {
 				step: 0.1,
 				start: 8.6,
 				format: wNumb({
-					decimals: 1,
+					decimals: 1
 				})
 			});
 
@@ -473,7 +474,9 @@ $(document).ready(function () {
 
 			thirdSlider.noUiSlider.on('update', function( values, handle ) {
 				thirdValue.innerHTML = values[handle];
-			});
+            });
+			
+
 		} else {
 			return false;
 		}

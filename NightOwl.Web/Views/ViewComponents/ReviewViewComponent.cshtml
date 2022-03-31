@@ -1,0 +1,28 @@
+﻿@using NightOwl.DataLayer.Entities
+@model IEnumerable<NightOwl.DataLayer.Entities.Reviews>
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<div class="col-12">
+    <div class="reviews">
+        <ul class="reviews__list">
+            
+            @foreach (var review in Model)
+            {
+                <input type="hidden" value="@review.ItemId" class="itemId"/>
+                <li class="reviews__item">
+                    <div class="reviews__autor">
+                        <img class="reviews__avatar" src="/DefaultLayout/img/user.png" style="padding: 0 5px 5px 5px;">
+                        <span class="reviews__name">@review.ReviewTitle</span>
+                        <span class="reviews__time">@review.ReviewDate by @review.ReviewersName</span>
+
+                        <span class="reviews__rating"><i class="icon ion-ios-star"></i>@review.ReviewRating</span>
+                    </div>
+                    <p class="reviews__text">@review.ReviewDescription</p>
+                </li>
+            }
+        </ul>
+        <partial name="_SubmitReview" model="new Reviews()"/>
+    </div>
+</div>

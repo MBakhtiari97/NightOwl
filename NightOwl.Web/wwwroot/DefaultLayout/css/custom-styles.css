@@ -47,3 +47,11 @@
 .actors-movies-page {
     margin-top: 50px;
 }
+.rateStyles {
+    color: whitesmoke;
+}
+.rateStylesNum {
+    border-radius: 5px;
+    margin-left: 10px;
+    text-align: center;
+}

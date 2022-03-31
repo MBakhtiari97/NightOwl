@@ -1,0 +1,20 @@
+﻿@model NightOwl.DataLayer.Entities.Reviews
+<form asp-action="AddReview" asp-controller="Review" class="form">
+    <input asp-for="ItemId" type="hidden" class="submitItemId" />
+
+    <input asp-for="ReviewersName" type="text" class="form__input" placeholder="Your Name" required>
+
+    <input asp-for="ReviewTitle" type="text" class="form__input" placeholder="Review Title" required>
+
+    <textarea asp-for="ReviewDescription" class="form__textarea" placeholder="Review Description" required></textarea>
+
+    <span class="rateStyles">Your Rate :</span><input type="number" asp-for="ReviewRating" min="1" max="10" value="6" class="rateStylesNum" required/>
+
+    <button type="submit" class="form__btn">Send</button>
+</form>
+
+<script>
+    let itemId = document.getElementsByClassName("itemId").value;
+    let submitItem = document.getElementsByClassName("submitItemId");
+    submitItem.value = itemId;
+</script>
