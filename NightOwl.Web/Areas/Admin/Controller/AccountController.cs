@@ -74,7 +74,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             }
 
             _notyfService.Success("You Successfully Logged On As Admin !");
-            return View();
+            return Redirect("/Admin");
         }
 
         #endregion
