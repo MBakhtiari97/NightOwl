@@ -38,6 +38,7 @@ builder.Services.AddScoped<IGenresRepository, GenresRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 #endregion
 
@@ -45,8 +46,8 @@ builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.LoginPath = "/Login";
-    options.LogoutPath = "/Logout";
+    options.LoginPath = "/Admin/Login";
+    options.LogoutPath = "/Admin/Logout";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 });
 

@@ -21,9 +21,6 @@ namespace NightOwl.DataLayer.Entities
         [MaxLength(250)]
         public string AdminEmailAddress { get; set; }
         [Required]
-        [MaxLength(250)]
-        public string AdminProfilePhoto { get; set; }
-        [Required]
         [MaxLength(50)]
         public string AdminPhoneNumber { get; set; }
         [Required]
