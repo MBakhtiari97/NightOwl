@@ -12,5 +12,6 @@ namespace NightOwl.Core.Services.Interfaces
         List<Reviews> GetReviewsByItem(int itemId);
         bool SubmitReview(Reviews newReview);
         int GetTotalReviews();
+        IEnumerable<Reviews> GetUnPublishedReviews();
     }
 }

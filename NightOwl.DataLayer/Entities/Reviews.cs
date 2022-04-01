@@ -29,6 +29,7 @@ namespace NightOwl.DataLayer.Entities
         public string? ReviewerIpAddress { get; set; }
         [Required]
         public int ItemId { get; set; }
+        public bool IsPublished { get; set; }
         //nav
         [ForeignKey("ItemId")]
         public Items Items { get; set; }

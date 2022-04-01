@@ -22,6 +22,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             ViewBag.SeriesNo = _movieRepository.GetTotalSeries();
             ViewBag.ComingSoonNo = _movieRepository.GetTotalComingSoon();
 
+            ViewBag.UnPublishedReviews = _reviewRepository.GetUnPublishedReviews();
             return View();
         }
     }

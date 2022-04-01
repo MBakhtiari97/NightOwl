@@ -19,6 +19,7 @@ namespace NightOwl.Core.Services
             _context = context; 
         }
 
+
         public List<Reviews> GetReviewsByItem(int itemId)
         {
            return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
@@ -27,6 +28,11 @@ namespace NightOwl.Core.Services
         public int GetTotalReviews()
         {
             return _context.Reviews.Count();
+        }
+
+        public IEnumerable<Reviews> GetUnPublishedReviews()
+        {
+            return _context.Reviews.Where(r => !r.IsPublished).ToList();
         }
 
         public bool SubmitReview(Reviews newReview)
