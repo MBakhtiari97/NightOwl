@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NightOwl.Core.Services.Interfaces;
 
 namespace NightOwl.Web.Areas.Admin.Controller
 {
+    [Authorize]
+    [Area("Admin")]
     public class HomeController : Microsoft.AspNetCore.Mvc.Controller
     {
         IReviewRepository _reviewRepository;
@@ -14,7 +17,6 @@ namespace NightOwl.Web.Areas.Admin.Controller
             _movieRepository = movieRepository;
         }
 
-        [Area("Admin")]
         public IActionResult Index()
         {
             ViewBag.ReviewsNo = _reviewRepository.GetTotalReviews();

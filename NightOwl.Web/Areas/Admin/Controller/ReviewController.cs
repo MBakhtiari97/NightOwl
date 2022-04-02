@@ -1,9 +1,11 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NightOwl.Core.Services.Interfaces;
 
 namespace NightOwl.Web.Areas.Admin.Controller
 {
+    [Authorize]
     [Area("Admin")]
     public class ReviewController : Microsoft.AspNetCore.Mvc.Controller
     {

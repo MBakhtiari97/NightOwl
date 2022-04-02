@@ -4,3 +4,6 @@
 .tableHomeAdmin a {
     margin: 3px;
 }
+.adminItemBannerPhoto {
+    max-height: 200px;
+}

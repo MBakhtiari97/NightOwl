@@ -46,8 +46,8 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.LoginPath = "/Admin/Login";
-    options.LogoutPath = "/Admin/Logout";
+    options.LoginPath = "/Login";
+    options.LogoutPath = "/Logout";
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 });
 

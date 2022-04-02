@@ -81,9 +81,16 @@
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+                <li class="active"><a href="/Admin"> <i class="icon-home"></i>Home </a></li>
                 @if (User.Identity.IsAuthenticated)
                 {
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Manage Item's</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                            <li><a href="/Admin/Items/1">Movie</a></li>
+                            <li><a href="/Admin/Items/2">Series</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
