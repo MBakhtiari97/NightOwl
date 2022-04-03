@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NightOwl.Core.DTOs;
 using NightOwl.DataLayer.Context;
 using NightOwl.DataLayer.Entities;
@@ -14,18 +15,19 @@ namespace NightOwl.Web.Areas.Admin.Controller
         private NightOwlContext _context;
         private INotyfService _notyfService;
 
-        public ManageItemsController(NightOwlContext context , INotyfService notyfService)
+        public ManageItemsController(NightOwlContext context, INotyfService notyfService)
         {
             _context = context;
             _notyfService = notyfService;
         }
 
-        [BindProperty] 
+        [BindProperty]
         public ItemsViewModel Items { get; set; }
 
 
-        [Route("/Admin/Items/{categoryId}")]
+
         // GET: ManageItemsController
+        [Route("/Admin/Items/{categoryId}")]
         public ActionResult Index(int categoryId)
         {
             var moviesOrSeries = _context.SelectedCategories
@@ -34,8 +36,9 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 .ToList();
             return View(moviesOrSeries);
         }
-        [Route("/Admin/Details/{itemId}")]
+
         // GET: ManageItemsController/Details/5
+        [Route("/Admin/Details/{itemId}")]
         public ActionResult Details(int itemId)
         {
             var itemDetails = _context.Items.Find(itemId);
@@ -45,8 +48,9 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
             return View(itemDetails);
         }
-        [Route("/Admin/Items/NewItem")]
+
         // GET: ManageItemsController/Create
+        [Route("/Admin/Items/NewItem")]
         public ActionResult Create()
         {
             return View();
@@ -69,7 +73,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 _context.Items.Add(items);
                 _context.SaveChanges();
 
-                if (Items.Banner?.Length>0)
+                if (Items.Banner?.Length > 0)
                 {
                     var createName = items.Title.Replace(" ", "").Replace(":", "").ToString();
                     var bannerName = items.ItemId + "-" + createName;
@@ -83,7 +87,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         bannerName +
                         Path.GetExtension(Items.Banner.FileName));
 
-                    using (var stream = new FileStream(bannerPath,FileMode.Create))
+                    using (var stream = new FileStream(bannerPath, FileMode.Create))
                     {
                         Items.Banner.CopyTo(stream);
                     }
@@ -106,43 +110,122 @@ namespace NightOwl.Web.Areas.Admin.Controller
         }
 
         // GET: ManageItemsController/Edit/5
+        [Route("/Admin/Items/Update/{itemId}")]
         public ActionResult Edit(int itemId)
         {
-            return View();
+            var currentItem = _context.Items.Find(itemId);
+            return View(currentItem);
         }
 
         // POST: ManageItemsController/Edit/5
+        [Route("/Admin/Items/Update/{itemId}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int itemId, IFormCollection collection)
+        public ActionResult Edit(int itemId, [Bind("ItemId", "Title", "Description", "ReleaseYear", "ManufacturerCountry", "Language", "ImdbScore",
+            "RottenTomatoScore", "MetaCriticScore","AvailableQualities","RunningTime","Banner","Actors","Director","AgeRating","AddedTime","Episodes",
+            "Seasons","EndRunningYear","TrailerLink")] Items items)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid)
+                    return View(items);
+
+                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i=>i.ItemId==itemId);
+
+                if (currentItem.ItemId != items.ItemId)
+                    return NotFound();
+
+                _context.Items.Update(items);
+                _context.SaveChanges();
+
+                if (Items.Banner?.Length > 0)
+                {
+                    var newName = itemId + "-" + items.Title.Replace(" ", "").Replace(":", "")
+                                      .ToString() +
+                                  Path.GetExtension(Items.Banner.FileName);
+
+                    var newPath = Path.Combine(Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "img",
+                        "Movies",
+                        newName);
+
+                    var oldPath = Path.Combine(Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "img",
+                        "Movies",
+                        currentItem.Banner);
+
+                    if (System.IO.File.Exists(oldPath))
+                    {
+                        System.IO.File.Delete(oldPath);
+                    }
+
+                    using (var stream = new FileStream(newPath,FileMode.Create))
+                    {
+                        Items.Banner.CopyTo(stream);
+                    }
+
+                    items.Banner = newName;
+                }
+                else
+                {
+                    items.Banner = currentItem.Banner;
+                }
+
+                _context.SaveChanges();
+                _notyfService.Success("New Changes Saved !");
+                return Redirect("/Admin/Items/1");
             }
             catch
             {
+                _notyfService.Error("Something Wrong Happened During Saving Changes !");
                 return View();
             }
         }
 
         // GET: ManageItemsController/Delete/5
+        [Route("/Admin/Items/Remove/{itemId}")]
         public ActionResult Delete(int itemId)
         {
-            return View();
+            var currentItem = _context.Items.Find(itemId);
+            return View(currentItem);
         }
 
         // POST: ManageItemsController/Delete/5
-        [HttpPost]
+        [Route("/Admin/Items/Remove/{itemId}")]
+        [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int itemId, IFormCollection collection)
+        public ActionResult DeleteConfirmed(int itemId)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i=>i.ItemId==itemId);
+
+                if (currentItem == null)
+                    return NotFound();
+
+                var oldPath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "img",
+                    "Movies",
+                    currentItem.Banner);
+
+
+                if (System.IO.File.Exists(oldPath))
+                {
+                    System.IO.File.Delete(oldPath);
+                }
+
+                _context.Items.Remove(currentItem);
+                _context.SaveChanges();
+                _notyfService.Success("Item Has Been Removed Successfully !");
+
+                return Redirect("/Admin/Items/1");
             }
             catch
             {
+                _notyfService.Error("Something Wrong Happened During Deleting Item !");
                 return View();
             }
         }

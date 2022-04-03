@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NightOwl.DataLayer.Entities.Genres>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12 text-center">
+    <h1>List Genre's</h1>
+
+    <p>
+        <a class="btn btn-outline-primary" asp-action="Create">New Genre</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning aTagsMargin" href="/Admin/Genres/Update/@item.GenreId">Update Genre</a><br/>
+                    <a class="btn btn-outline-danger aTagsMargin" href="/Admin/Genres/Remove/@item.GenreId">Remove Genre</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>

@@ -20,7 +20,7 @@ namespace NightOwl.Core.DTOs
         public string? MetaCriticScore { get; set; }
         public string? AvailableQualities { get; set; }
         public string? RunningTime { get; set; }
-        public IFormFile Banner { get; set; }
+        public IFormFile? Banner { get; set; }
         public string? Actors { get; set; }
         public string? Director { get; set; }
         public string? AgeRating { get; set; }
