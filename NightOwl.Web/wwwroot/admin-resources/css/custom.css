@@ -1,7 +1,7 @@
 .adminRegisterForms {
     margin: 50px;
 }
-.tableHomeAdmin a {
+.tableHomeAdmin a, .aTagsMargin {
     margin: 3px;
 }
 .adminItemBannerPhoto {

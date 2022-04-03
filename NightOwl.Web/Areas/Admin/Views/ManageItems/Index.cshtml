@@ -82,10 +82,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AddedTime)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            <td class="text-center">    
+                <a class="btn btn-outline-info aTagsMargin" asp-action="Details" asp-controller="ManageItems" asp-route-itemId="@item.ItemId">Show More Detail's</a><br/>
+                <a class="btn btn-outline-warning aTagsMargin" asp-action="Edit" asp-controller="ManageItems" asp-route-itemId="@item.ItemId">Update Item Info's</a><br/>
+                <a class="btn btn-outline-danger aTagsMargin" asp-action="Delete" asp-controller="ManageItems" asp-route-itemId="@item.ItemId">Remove Item</a>
             </td>
         </tr>
 }

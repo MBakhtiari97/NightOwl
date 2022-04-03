@@ -25,10 +25,16 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 .ToList();
             return View(moviesOrSeries);
         }
+        [Route("/Admin/Details/{itemId}")]
         // GET: ManageItemsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int itemId)
         {
-            return View();
+            var itemDetails = _context.Items.Find(itemId);
+
+            if (itemDetails == null)
+                return NotFound();
+
+            return View(itemDetails);
         }
 
         // GET: ManageItemsController/Create
@@ -53,7 +59,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
         }
 
         // GET: ManageItemsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int itemId)
         {
             return View();
         }
@@ -61,7 +67,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
         // POST: ManageItemsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int itemId, IFormCollection collection)
         {
             try
             {
@@ -74,7 +80,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
         }
 
         // GET: ManageItemsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
             return View();
         }
@@ -82,7 +88,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
         // POST: ManageItemsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int itemId, IFormCollection collection)
         {
             try
             {
