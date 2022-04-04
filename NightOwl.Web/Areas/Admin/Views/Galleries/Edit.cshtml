@@ -1,0 +1,45 @@
+﻿@model NightOwl.DataLayer.Entities.Galleries
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Update Gallery Image Detail's</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" value="@ViewBag.ItemId" asp-for="ItemId" class="form-control" />
+                <input type="hidden" asp-for="GalleryId" class="form-control" />
+
+                <div class="form-group">
+                    <label asp-for="ImageName" class="control-label"></label>
+                    <input type="file" asp-for="ImageName" class="form-control" />
+                    <span asp-validation-for="ImageName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageAltName" class="control-label"></label>
+                    <input asp-for="ImageAltName" class="form-control" />
+                    <span asp-validation-for="ImageAltName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-outline-warning" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a href="/Admin/Galleries/@ViewBag.ItemId">Back to List</a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

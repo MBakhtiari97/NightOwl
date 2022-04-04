@@ -1,0 +1,41 @@
+﻿@model NightOwl.DataLayer.Entities.Galleries
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Delete Gallery Image</h1>
+
+    <h3>Are you sure you want to delete this image?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GalleryId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GalleryId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageName)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="/img/Galleries/@Model.ImageName" class="img-thumbnail adminGalleryImageDetails"/>
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageAltName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ImageAltName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="submit" value="Remove Image" class="btn btn-outline-danger" /> |
+            <a href="/Admin/Galleries/@Model.ItemId">Back to List</a>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<NightOwl.DataLayer.Entities.Galleries>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>List Of Gallery Images</h1>
+    <hr />    
+    <a class="btn btn-outline-primary" href="/Admin/Galleries/Create/@ViewBag.ItemId" >Add New Gallery Image</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GalleryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageAltName)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GalleryId)
+                </td>
+                <td>
+                    <img src="/img/Galleries/@item.ImageName" class="img-thumbnail imgAdminGalleryIndex"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageAltName)
+                </td>
+                <td>
+                    <a class="btn btn-outline-info" href="/Admin/Galleries/Details/@item.GalleryId">See More Detail's</a> |
+                    <a class="btn btn-outline-warning" href="/Admin/Galleries/Update/@item.GalleryId">Update Detail's</a> |
+                    <a class="btn btn-outline-danger" href="/Admin/Galleries/Remove/@item.GalleryId">Remove This Image</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>

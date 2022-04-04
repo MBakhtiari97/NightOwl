@@ -83,6 +83,7 @@
                 @Html.DisplayFor(modelItem => item.AddedTime)
             </td>
             <td class="text-center">    
+                <a class="btn btn-outline-primary" href="/Admin/Galleries/@item.ItemId" >See This Item Gallery</a>
                 <a class="btn btn-outline-info aTagsMargin" asp-action="Details" asp-controller="ManageItems" asp-route-itemId="@item.ItemId">Show More Detail's</a><br/>
                 <a class="btn btn-outline-warning aTagsMargin" href="/Admin/Items/Update/@item.ItemId">Update Item Info's</a><br/>
                 <a class="btn btn-outline-danger aTagsMargin" asp-action="Delete" asp-controller="ManageItems" asp-route-itemId="@item.ItemId">Remove Item</a>

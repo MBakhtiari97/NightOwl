@@ -12,7 +12,6 @@ namespace NightOwl.DataLayer.Entities
     {
         [Key]
         public int GalleryId { get; set; }
-        [Required]
         [MaxLength(250)]
         public string ImageName { get; set; }
         [Required]

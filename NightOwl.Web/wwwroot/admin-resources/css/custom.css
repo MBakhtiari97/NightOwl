@@ -7,3 +7,10 @@
 .adminItemBannerPhoto {
     max-height: 200px;
 }
+.adminGalleryImageDetails {
+    max-height: 600px;
+    max-width: 800px;
+}
+.imgAdminGalleryIndex {
+    max-width: 300px;
+}
