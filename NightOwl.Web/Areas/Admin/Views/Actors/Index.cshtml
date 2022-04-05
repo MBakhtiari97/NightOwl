@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NightOwl.DataLayer.Entities.Actors>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>List Actor's</h1>
+    <hr/>
+    <p>
+        <a class="btn btn-primary" href="/Admin/Actors/New">New Actor</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActorGender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActorImage)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActorGender)
+                </td>
+                <td>
+                    <img src="/img/Actors/@item.ActorImage" class="img-thumbnail adminItemBannerPhoto" alt="@item.ActorName"/>
+                </td>
+                <td>
+                    <a class="btn btn-outline-info" href="/Admin/Actors/Details/@item.ActorId">Actor Detail's</a> |
+                    <a class="btn btn-outline-warning" >Update Actor</a> |
+                    <a class="btn btn-outline-danger" >Remove Actor</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>

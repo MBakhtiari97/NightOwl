@@ -1,0 +1,45 @@
+﻿@model NightOwl.DataLayer.Entities.Actors
+
+@{
+    ViewData["Title"] = "ActorDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Actor Detail's</h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ActorId)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ActorId)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ActorName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ActorName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ActorGender)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ActorGender)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ActorImage)
+            </dt>
+            <dd class = "col-sm-10">
+                <img src="/img/Actors/@Model.ActorImage" class="img-thumbnail adminItemBannerPhoto" alt="@Model.ActorName"/>
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-outline-warning" >Update Actor</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>
