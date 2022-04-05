@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     List<Reviews> unPublishedReviews = ViewBag.UnPublishedReviews;
+    List<Admins> AdminRequests = ViewBag.AdminRequests;
 }
 
 
@@ -94,6 +95,43 @@
                         <td>@review.ReviewDescription</td>
                         <td>@review.ReviewDate</td>
                         <td><a class="btn btn-outline-primary" href="/Admin/Review/ConfirmReview?reviewId=@review.ReviewId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/Review/RemoveReview?reviewId=@review.ReviewId">Delete</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>  
+}
+
+
+@if (AdminRequests.Any())
+{ 
+    <div class="col col-md-12 text-center">
+        <div class="title"><h1>Waiting for confirm admin request's</h1></div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover tableHomeAdmin">
+                <thead>
+                <tr>
+                    <th>Request Admin Id</th>
+                    <th>IP Address</th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Is Active</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var request in AdminRequests)
+                {
+                    <tr>
+                        <td>@request.AdminId</td>
+                        <td>@request.AdminIpAddress</td>
+                        <td>@request.AdminName</td>
+                        <td>@request.AdminEmailAddress</td>
+                        <td>@request.AdminPhoneNumber</td>
+                        <td>Not Yet !</td>
+                        <td><a class="btn btn-outline-success" href="/Admin/ManageRequest/Confirm/@request.AdminId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/ManageRequest/Decline/@request.AdminId">Decline</a></td>
                     </tr>
                 }
                 </tbody>
