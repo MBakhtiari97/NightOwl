@@ -1,0 +1,58 @@
+﻿@model NightOwl.DataLayer.Entities.Actors
+
+@{
+    ViewData["Title"] = "UpdateActor";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col col-md-12">
+    <h1>UpdateActor</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UpdateActor" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ActorId" class="form-control" />
+                <input type="hidden" asp-for="ActorGender" class="form-control" id="gender" />
+
+                <div class="form-group">
+                    <label asp-for="ActorName" class="control-label"></label>
+                    <input asp-for="ActorName" class="form-control" />
+                    <span asp-validation-for="ActorName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActorGender" class="control-label"></label>
+                    <select id="selectGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="ActorGender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActorImage" class="control-label"></label>
+                    <input type="file" asp-for="ActorImage" class="form-control" />
+                    <span asp-validation-for="ActorImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" onclick="ChooseGender()" value="Update" class="btn btn-outline-warning" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function ChooseGender() {
+            let genderInput = document.getElementById("gender");
+            let selectedGender = document.getElementById("selectGender");
+            genderInput.value = selectedGender.value;
+        }
+       
+    </script>
+}
