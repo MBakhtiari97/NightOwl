@@ -13,7 +13,7 @@ namespace NightOwl.DataLayer.Entities
         [Key]
         public int DownloadId { get; set; }
         [Required]
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string ItemSize { get; set; }
         [Required]
         public DateTime UploadDate { get; set; }

@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\admin-resources\vendor\font-awesome\less\" />
     <Folder Include="wwwroot\admin-resources\vendor\font-awesome\scss\" />
+    <Folder Include="wwwroot\mov\" />
   </ItemGroup>
 
 </Project>

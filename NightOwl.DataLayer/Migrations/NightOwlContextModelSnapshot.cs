@@ -193,8 +193,8 @@ namespace NightOwl.DataLayer.Migrations
 
                     b.Property<string>("ItemSize")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("QualityDetails")
                         .IsRequired()
@@ -401,7 +401,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 1,
                             Actors = "Robert Pattinson , Zoë Kravitz , Jeffrey Wright",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(227),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2411),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "1-TheBatman.jpg",
@@ -420,7 +420,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 2,
                             Actors = "Ryan Reynolds , Walker Scobell , Mark Ruffalo",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(311),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2458),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "2-TheAdamProject.jpg",
@@ -438,7 +438,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 3,
                             Actors = "Rosalie Chiang , Sandra Oh , Ava Morse",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(315),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2462),
                             AgeRating = "PG",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "3-TurningRed.jpg",
@@ -456,7 +456,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 4,
                             Actors = "Tom Holland , Zendaya , Benedict Cumberbatch",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(318),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2465),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "4-Spider-Man:NoWayHome.jpg",
@@ -474,7 +474,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 5,
                             Actors = "Ben Affleck , Ana de Armas , Tracy Letts",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(322),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2469),
                             AgeRating = "R",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "5-DeepWater.jpg",
@@ -492,7 +492,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 6,
                             Actors = "Timothée Chalamet , Rebecca Ferguson , Zendaya",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(326),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2472),
                             AgeRating = "PG-13",
                             AvailableQualities = "4K,1080p,720p",
                             Banner = "6-Dune.jpg",
@@ -510,7 +510,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 16,
                             Actors = "Jake Gyllenhaal , Yahya Abdul - Mateen , IIEiza González",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(329),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2476),
                             AgeRating = "R",
                             AvailableQualities = "Coming Soon",
                             Banner = "16-Ambulance.jpg",
@@ -527,7 +527,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 17,
                             Actors = "Mads Mikkelsen , Ezra Miller , Katherine Waterston",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(332),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2479),
                             AgeRating = "PG-13",
                             Banner = "17-FantasticBeastsTheSecretsOfDumbledore.jpg",
                             Description = "The third installment of Fantastic Beasts and Where to Find Them,which follows the continuing adventures of Newt Scamander.",
@@ -541,7 +541,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 18,
                             Actors = "Mel Gibson , Mark Wahlberg , Jacki Weaver",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(335),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2482),
                             AgeRating = "R",
                             Banner = "18-FatherStu.jpg",
                             Description = "Follows the life of Father Stuart Long, a boxer-turned-priest who inspired countless people during his journey from self-destruction to redemption.",
@@ -554,7 +554,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 19,
                             Actors = "Liam Neeson , Monica Bellucci , Ray Stevenson",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(338),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2485),
                             AgeRating = "R",
                             Banner = "19-Memory.jpg",
                             Description = "An assassin-for-hire finds that he's become a target after he refuses to complete a job for a dangerous criminal organization. A remake of the 2003 Belgian film 'The Memory of a Killer",
@@ -567,7 +567,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 12,
                             Actors = "Alexander Dreymon , Eliza Butterworth , Arnas Fedaravicius",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(359),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2504),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "12-TheLastKingdom.jpg",
@@ -587,7 +587,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 13,
                             Actors = "Cillian Murphy , Paul Anderson , Sophie Rundle",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(365),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2509),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "13-PeakyBlinders.jpg",
@@ -607,7 +607,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 14,
                             Actors = "Emilia Clarke , Peter Dinklage , Kit Harington",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(369),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2513),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "14-GameofThrones.jpg",
@@ -627,7 +627,7 @@ namespace NightOwl.DataLayer.Migrations
                         {
                             ItemId = 15,
                             Actors = "Bryan Cranston , Aaron Paul , Anna Gunn",
-                            AddedTime = new DateTime(2022, 4, 6, 8, 8, 34, 122, DateTimeKind.Local).AddTicks(373),
+                            AddedTime = new DateTime(2022, 4, 6, 14, 31, 15, 321, DateTimeKind.Local).AddTicks(2517),
                             AgeRating = "TV-MA",
                             AvailableQualities = "480p,720p,1080p",
                             Banner = "15-BreakingBad.jpg",

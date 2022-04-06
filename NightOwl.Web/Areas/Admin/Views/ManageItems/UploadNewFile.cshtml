@@ -1,0 +1,59 @@
+﻿@model NightOwl.DataLayer.Entities.Download
+
+@{
+    ViewData["Title"] = "UploadNewFile";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>UploadNewFile</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UploadNewFile">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="ItemId" type="hidden" class="form-control" readonly/>
+                <div class="form-group">
+                    <label asp-for="ItemSize" class="control-label"></label>
+                    <input asp-for="ItemSize" class="form-control"/>
+                    <span asp-validation-for="ItemSize" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QualityDetails" class="control-label"></label>
+                    <input asp-for="QualityDetails" class="form-control" />
+                    <span asp-validation-for="QualityDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeasonDetails" class="control-label"></label>
+                    <input asp-for="SeasonDetails" class="form-control" />
+                    <span asp-validation-for="SeasonDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EpisodeDetails" class="control-label"></label>
+                    <input asp-for="EpisodeDetails" class="form-control" />
+                    <span asp-validation-for="EpisodeDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DownloadLink" class="control-label"></label>
+                    <input asp-for="DownloadLink" class="form-control"/>
+                    <span asp-validation-for="DownloadLink" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a href="/Admin/ManageDownload/@Model.ItemId">Back to List</a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
