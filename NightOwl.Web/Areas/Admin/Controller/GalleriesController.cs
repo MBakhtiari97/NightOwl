@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NightOwl.Core.DTOs;
+using NightOwl.Core.Services.Interfaces;
 using NightOwl.DataLayer.Context;
 using NightOwl.DataLayer.Entities;
 using NightOwl.Utility.Generators;
@@ -12,34 +13,52 @@ namespace NightOwl.Web.Areas.Admin.Controller
     [Area("Admin")]
     public class GalleriesController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private NightOwlContext _context;
-        private INotyfService _notyfServicel;
+        #region Injection
 
-        public GalleriesController(NightOwlContext context,INotyfService notyfService)
+        private INotyfService _notyfServicel;
+        private IGalleryRepository _galleryRepository;
+
+        public GalleriesController(INotyfService notyfService, IGalleryRepository galleryRepository)
         {
-            _context = context;
             _notyfServicel = notyfService;
+            _galleryRepository = galleryRepository;
         }
+
+
+        #endregion
+
+        #region BindingProperty
 
         [BindProperty]
         public GalleriesViewModel Galleries { get; set; }
 
 
-        [Route("/Admin/Galleries/{id}")]
-        public ActionResult Index(int id)
+        #endregion
+
+        #region Index
+
+        [Route("/Admin/Galleries/{itemId}")]
+        public ActionResult Index(int itemId)
         {
-            ViewBag.ItemId = id;
-            var galleries = _context.Galleries.Where(g => g.ItemId == id).ToList();
-            return View(galleries);
+            ViewBag.ItemId = itemId;
+            return View(_galleryRepository.GetGalleriesByItemId(itemId));
         }
 
+        #endregion
+
+        #region Details
+
         // GET: GalleriesController/Details/5
-        [Route("/Admin/Galleries/Details/{id}")]
-        public ActionResult Details(int id)
+        [Route("/Admin/Galleries/Details/{galleryId}")]
+        public ActionResult Details(int galleryId)
         {
-            var gallery = _context.Galleries.Find(id);
-            return View(gallery);
+            return View(_galleryRepository.GetGalleryByGalleryId(galleryId));
         }
+
+
+        #endregion
+
+        #region CreateNew
 
         // GET: GalleriesController/Create
         [Route("/Admin/Galleries/Create/{itemId}")]
@@ -73,7 +92,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         "Galleries",
                         newName);
 
-                    using (var stream = new FileStream(newPath,FileMode.Create))
+                    using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Galleries.ImageName.CopyTo(stream);
                     }
@@ -83,9 +102,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 {
                     gallery.ImageName = "Default.jpg";
                 }
-                _context.Galleries.Add(gallery);
-                _context.SaveChanges();
 
+                _galleryRepository.AddNewGallery(gallery);
                 _notyfServicel.Success("Image Has Successfully Added To Gallery !");
 
                 return Redirect($"/Admin/Galleries/{gallery.ItemId}");
@@ -97,14 +115,16 @@ namespace NightOwl.Web.Areas.Admin.Controller
             }
         }
 
+
+        #endregion
+
+        #region Update
+
         // GET: GalleriesController/Edit/5
         [Route("/Admin/Galleries/Update/{galleryId}")]
         public ActionResult Edit(int galleryId)
         {
-            var galleryImage = _context.Galleries.Find(galleryId);
-
-            if (galleryImage == null)
-                return NotFound();
+            var galleryImage = _galleryRepository.GetGalleryByGalleryId(galleryId);
 
             ViewBag.ItemId = galleryImage.ItemId;
 
@@ -122,16 +142,14 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(gallery);
 
-                var currentImageDetails = _context.Galleries
-                    .AsNoTracking()
-                    .Single(g=>g.GalleryId==galleryId);
+                var currentImageDetails = _galleryRepository.GetGalleryAsNoTracking(galleryId);
 
                 if (currentImageDetails.GalleryId != galleryId)
                     return NotFound();
 
                 if (Galleries.ImageName?.Length > 0)
                 {
-                    var newName = StringGenerator.GenerateUniqueString() 
+                    var newName = StringGenerator.GenerateUniqueString()
                                   + Path.GetExtension(Galleries.ImageName.FileName);
 
                     var newPath = Path.Combine(Directory.GetCurrentDirectory(),
@@ -151,7 +169,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         System.IO.File.Delete(oldPath);
                     }
 
-                    using (var stream = new FileStream(newPath,FileMode.Create))
+                    using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Galleries.ImageName.CopyTo(stream);
                     }
@@ -163,8 +181,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     gallery.ImageName = currentImageDetails.ImageName;
                 }
 
-                _context.Galleries.Update(gallery);
-                _context.SaveChanges();
+                _galleryRepository.UpdateGallery(gallery);
                 _notyfServicel.Success("Changes Saved !");
 
                 return Redirect($"/Admin/Galleries/{gallery.ItemId}");
@@ -176,25 +193,27 @@ namespace NightOwl.Web.Areas.Admin.Controller
             }
         }
 
+
+        #endregion
+
+        #region Remove
+
         // GET: GalleriesController/Delete/5
         [Route("/Admin/Galleries/Remove/{galleryId}")]
         public ActionResult Delete(int galleryId)
         {
-            var currentGallery = _context.Galleries.Find(galleryId);
-            return View(currentGallery);
+            return View(_galleryRepository.GetGalleryByGalleryId(galleryId));
         }
 
         // POST: GalleriesController/Delete/5
         [Route("/Admin/Galleries/Remove/{galleryId}")]
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int galleryId)
         {
             try
             {
-                var currentImageDetails = _context.Galleries
-                    .AsNoTracking()
-                    .Single(g => g.GalleryId == galleryId);
+                var currentImageDetails = _galleryRepository.GetGalleryAsNoTracking(galleryId);
 
                 if (currentImageDetails.GalleryId != galleryId)
                     return NotFound();
@@ -210,8 +229,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     System.IO.File.Delete(imagePath);
                 }
 
-                _context.Galleries.Remove(currentImageDetails);
-                _context.SaveChanges();
+                _galleryRepository.RemoveGallery(currentImageDetails);
                 _notyfServicel.Success("Image Has Been Removed Successfully !");
 
                 return Redirect($"/Admin/Galleries/{currentImageDetails.ItemId}");
@@ -222,5 +240,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 return View();
             }
         }
+
+        #endregion
     }
 }

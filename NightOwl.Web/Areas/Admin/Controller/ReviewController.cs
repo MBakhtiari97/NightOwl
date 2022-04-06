@@ -8,6 +8,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
     [Area("Admin")]
     public class ReviewController : Microsoft.AspNetCore.Mvc.Controller
     {
+        #region Injection
+
         private IReviewRepository _reviewRepository;
         private INotyfService _notyfService;
 
@@ -17,11 +19,21 @@ namespace NightOwl.Web.Areas.Admin.Controller
             _notyfService = notyfService;
         }
 
+
+        #endregion
+
+        #region Index
+
         [Route("/Admin/Items/Reviews/{itemId}")]
         public IActionResult ReviewsIndex(int itemId)
         {
             return View(_reviewRepository.GetReviewsByItemId(itemId));
         }
+
+
+        #endregion
+
+        #region Confirm
 
         public IActionResult ConfirmReview(int reviewId)
         {
@@ -36,9 +48,14 @@ namespace NightOwl.Web.Areas.Admin.Controller
             return Redirect("/Admin");
         }
 
+
+        #endregion
+
+        #region Remove
+
         public IActionResult RemoveReview(int reviewId)
         {
-            if(_reviewRepository.RemoveReview(reviewId))
+            if (_reviewRepository.RemoveReview(reviewId))
             {
                 _notyfService.Success("Review Has Been Deleted Successfully !");
             }
@@ -49,5 +66,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
             return Redirect("/Admin");
         }
+
+        #endregion
+
     }
 }

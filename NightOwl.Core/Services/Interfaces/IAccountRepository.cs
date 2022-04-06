@@ -12,5 +12,10 @@ namespace NightOwl.Core.Services.Interfaces
     {
         Admins GetAdmin(string emailAddress, string password);
         bool AddNewAdmin(Admins newAdmin);
+        IEnumerable<Admins> GetAllAdmins();
+        Admins GetAdminByAdminId(int adminId);
+        void SaveChanges();
+        void RemoveAdmin(Admins admin);
+        IEnumerable<Admins> GetAdminRequests();
     }
 }

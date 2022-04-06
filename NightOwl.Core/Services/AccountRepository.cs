@@ -31,5 +31,31 @@ namespace NightOwl.Core.Services
                 .SingleOrDefault(a =>
                 a.AdminEmailAddress == emailAddress && a.Password == password);
         }
+
+        public Admins GetAdminByAdminId(int adminId)
+        {
+            return _context.Admins.Find(adminId);
+        }
+
+        public IEnumerable<Admins> GetAdminRequests()
+        {
+            return _context.Admins.Where(a => a.IsActive == false).ToList();
+        }
+
+        public IEnumerable<Admins> GetAllAdmins()
+        {
+           return _context.Admins.ToList();
+        }
+
+        public void RemoveAdmin(Admins admin)
+        {
+            _context.Admins.Remove(admin);
+            _context.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }
