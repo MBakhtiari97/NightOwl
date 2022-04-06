@@ -54,7 +54,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 {
                     new Claim(ClaimTypes.NameIdentifier, admin.AdminId.ToString()),
                     new Claim(ClaimTypes.Name, admin.AdminName),
-                    new Claim(ClaimTypes.Email, admin.AdminEmailAddress)
+                    new Claim(ClaimTypes.Email, admin.AdminEmailAddress),
+                    new Claim("IsModerator", admin.IsModerator.ToString())
                 };
 
                 var identifier = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

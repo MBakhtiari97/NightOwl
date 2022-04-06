@@ -16,6 +16,12 @@ namespace NightOwl.Web.Areas.Admin.Controller
             _notyfService = notyfService;
         }
 
+        [Route("/Admin/AdminIndex")]
+        public IActionResult GetAllAdmins()
+        {
+            return View(_context.Admins.ToList());
+        }
+
         [Route("/Admin/ManageRequest/Details/{adminId}")]
         public IActionResult AdminDetails(int adminId)
         {
@@ -42,13 +48,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
                 _notyfService.Success("Request Confirmed !");
 
-                return Redirect("/Admin");
+                return Redirect("/Admin/AdminIndex");
 
             }
             catch
             {
                 _notyfService.Error("Failed To Accept Request !");
-                return Redirect("/Admin");
+                return Redirect("/Admin/AdminIndex");
             }
             
         }
@@ -68,13 +74,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
                 _notyfService.Success("Request Removed Successfully !");
 
-                return Redirect("/Admin");
+                return Redirect("/Admin/AdminIndex");
 
             }
             catch
             {
                 _notyfService.Error("Failed To Remove Request !");
-                return Redirect("/Admin");
+                return Redirect("/Admin/AdminIndex");
             }
 
         }

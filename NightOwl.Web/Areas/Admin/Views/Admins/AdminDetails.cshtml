@@ -43,7 +43,11 @@
         </dl>
     </div>
     <div>
-        <a class="btn btn-lg btn-success" href="/Admin/ManageRequest/Confirm/@Model.AdminId">Confirm Request</a>
+        @if (!Model.IsActive)
+        {
+            <a class="btn btn-success" href="/Admin/ManageRequest/Confirm/@Model.AdminId">Confirm Request</a>
+        }
+        <a class="btn btn-secondary" href="/Admin/AdminIndex">Go To List Admins</a> 
     </div>
 
 </div>

@@ -27,5 +27,6 @@ namespace NightOwl.DataLayer.Entities
         [MaxLength(250)]
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        public bool IsModerator { get; set; }
     }
 }

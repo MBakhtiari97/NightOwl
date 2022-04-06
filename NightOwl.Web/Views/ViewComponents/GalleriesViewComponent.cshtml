@@ -1,0 +1,18 @@
+﻿@using Microsoft.Build.Globbing
+@model IEnumerable<NightOwl.DataLayer.Entities.Galleries>
+
+<div class="gallery" itemscope>
+    <div class="row">
+        @foreach (var image in Model)
+        {
+            <!-- gallery item -->
+            <figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
+                <a href="/img/Galleries/@image.ImageName" itemprop="contentUrl" data-size="1920x1280">
+                    <img src="/img/Galleries/@image.ImageName" class="img-gallery" itemprop="thumbnail" alt="@image.ImageAltName"/>
+                </a>
+                <figcaption itemprop="caption description">@image.ImageAltName</figcaption>
+            </figure>
+            <!-- end gallery item -->
+        }
+    </div>
+</div>

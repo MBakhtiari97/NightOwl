@@ -1,0 +1,65 @@
+﻿@using System.Security.Claims
+@model IEnumerable<NightOwl.DataLayer.Entities.Admins>
+
+@{
+    ViewData["Title"] = "GetAllAdmins";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>List Of Admins</h1>
+    <hr/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdminName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdminIpAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdminEmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdminPhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdminName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdminIpAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdminEmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdminPhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-info" href="/Admin/ManageRequest/Details/@item.AdminId">See Detail's</a>
+                        @if (User.FindFirstValue("IsModerator").ToString() == "True")
+                        {
+                            <span>|&nbsp;</span><a class="btn btn-outline-danger" href="/Admin/ManageRequest/Decline/@item.AdminId">Remove This Admin</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
