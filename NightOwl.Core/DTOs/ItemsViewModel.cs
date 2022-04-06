@@ -30,4 +30,16 @@ namespace NightOwl.Core.DTOs
         public string? EndRunningYear { get; set; }
         public string? TrailerLink { get; set; }
     }
+
+    public class DownloadViewModel
+    {
+        public int DownloadId { get; set; }
+        public string ItemSize { get; set; }
+        public DateTime UploadDate { get; set; }
+        public string QualityDetails { get; set; }
+        public string? SeasonDetails { get; set; }
+        public string? EpisodeDetails { get; set; }
+        public IFormFile? DownloadLink { get; set; }
+        public int ItemId { get; set; }
+    }
 }

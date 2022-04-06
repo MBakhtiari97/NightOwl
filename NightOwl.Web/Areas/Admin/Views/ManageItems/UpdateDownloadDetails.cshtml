@@ -1,0 +1,66 @@
+﻿@model NightOwl.DataLayer.Entities.Download
+
+@{
+    ViewData["Title"] = "UpdateDownloadDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Update Detail's</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UpdateDownloadDetails">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="DownloadId" class="form-control" />
+                <input type="hidden" asp-for="ItemId" class="form-control" />
+
+                <div class="form-group">
+                    <label asp-for="ItemSize" class="control-label"></label>
+                    <input asp-for="ItemSize" class="form-control" />
+                    <span asp-validation-for="ItemSize" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UploadDate" class="control-label"></label>
+                    <input asp-for="UploadDate" class="form-control" readonly />
+                    <span asp-validation-for="UploadDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QualityDetails" class="control-label"></label>
+                    <input asp-for="QualityDetails" class="form-control" />
+                    <span asp-validation-for="QualityDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeasonDetails" class="control-label"></label>
+                    <input asp-for="SeasonDetails" class="form-control" />
+                    <span asp-validation-for="SeasonDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EpisodeDetails" class="control-label"></label>
+                    <input asp-for="EpisodeDetails" class="form-control" />
+                    <span asp-validation-for="EpisodeDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DownloadLink" class="control-label"></label>
+                    <input asp-for="DownloadLink" class="form-control" readonly />
+                    <span asp-validation-for="DownloadLink" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-outline-warning" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a class="btn btn-outline-danger" href="/Admin/ManageDownload/@Model.ItemId">Back to download link's</a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

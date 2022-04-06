@@ -1,0 +1,74 @@
+﻿@model IEnumerable<NightOwl.DataLayer.Entities.Download>
+
+@{
+    ViewData["Title"] = "DownloadLinks";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Manage Download Link's</h1>
+    <hr/>
+<p>
+    <a class="btn btn-success" asp-action="Create">New Upload</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DownloadId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualityDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeasonDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EpisodeDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DownloadLink)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownloadId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualityDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeasonDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EpisodeDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownloadLink)
+            </td>
+            <td>
+                <a class="btn btn-outline-warning aTagsMargin" href="/Admin/ManageDownload/Update/@item.DownloadId">Update Detail's</a><br/>
+                <a class="btn btn-outline-danger aTagsMargin">Remove Link</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</div>

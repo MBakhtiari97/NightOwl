@@ -23,6 +23,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
         [BindProperty]
         public ItemsViewModel Items { get; set; }
+        [BindProperty]
+        public DownloadViewModel Download { get; set; }
 
 
 
@@ -130,7 +132,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(items);
 
-                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i=>i.ItemId==itemId);
+                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i => i.ItemId == itemId);
 
                 if (currentItem.ItemId != items.ItemId)
                     return NotFound();
@@ -161,7 +163,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         System.IO.File.Delete(oldPath);
                     }
 
-                    using (var stream = new FileStream(newPath,FileMode.Create))
+                    using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Items.Banner.CopyTo(stream);
                     }
@@ -194,13 +196,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
         // POST: ManageItemsController/Delete/5
         [Route("/Admin/Items/Remove/{itemId}")]
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int itemId)
         {
             try
             {
-                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i=>i.ItemId==itemId);
+                var currentItem = _context.Items.AsNoTracking().SingleOrDefault(i => i.ItemId == itemId);
 
                 if (currentItem == null)
                     return NotFound();
@@ -228,6 +230,53 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 _notyfService.Error("Something Wrong Happened During Deleting Item !");
                 return View();
             }
+        }
+
+        [Route("/Admin/ManageDownload/{itemId}")]
+        public IActionResult DownloadLinks(int itemId)
+        {
+            return View(_context.Download.Where(d => d.ItemId == itemId).ToList());
+        }
+
+        [Route("/Admin/ManageDownload/Update/{downloadId}")]
+        public IActionResult UpdateDownloadDetails(int downloadId)
+        {
+            return View(_context.Download
+                .Include(d=>d.Items)
+                .Single(d=>d.DownloadId==downloadId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/Admin/ManageDownload/Update/{downloadId}")]
+        public IActionResult UpdateDownloadDetails(int downloadId
+            , [Bind("DownloadId", "ItemSize", "UploadDate", "QualityDetails", "SeasonDetails", "EpisodeDetails", "DownloadLink", "ItemId")] Download download)
+        {
+            try
+            {
+                var currentDetails = _context.Download
+                    .Include(d=>d.Items)
+                    .AsNoTracking()
+                    .SingleOrDefault(d=>d.DownloadId==downloadId);
+                
+                if (currentDetails == null)
+                    return NotFound();
+
+                _context.Download.Update(download);
+                _context.SaveChanges();
+
+                _notyfService.Success("Download Detail's Has Been Updated Successfully !");
+
+                return Redirect($"/Admin/ManageDownload/{download.ItemId}");
+            }
+            catch
+            {
+                _notyfService.Error("Something Wrong Happened During Update Operation !");
+                return View(download);
+            }
+            
+
+            
         }
     }
 }
