@@ -5,7 +5,6 @@ using NightOwl.Core.Services.Interfaces;
 
 namespace NightOwl.Web.Areas.Admin.Controller
 {
-    [Authorize]
     [Area("Admin")]
     public class ReviewController : Microsoft.AspNetCore.Mvc.Controller
     {
@@ -16,6 +15,12 @@ namespace NightOwl.Web.Areas.Admin.Controller
         {
             _reviewRepository = reviewRepository;
             _notyfService = notyfService;
+        }
+
+        [Route("/Admin/Items/Reviews/{itemId}")]
+        public IActionResult ReviewsIndex(int itemId)
+        {
+            return View(_reviewRepository.GetReviewsByItemId(itemId));
         }
 
         public IActionResult ConfirmReview(int reviewId)

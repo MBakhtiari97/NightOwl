@@ -19,6 +19,30 @@ namespace NightOwl.Core.Services
             _context = context;
         }
 
+        public void AddNewActor(Actors actorDetails)
+        {
+            _context.Actors.Add(actorDetails);
+            _context.SaveChanges();
+        }
+
+        public void DeleteActor(Actors actorDetails)
+        {
+            _context.Actors.Remove(actorDetails);
+            _context.SaveChanges();
+        }
+
+        public Actors GetActor(int actorId)
+        {
+            return _context.Actors.Find(actorId);
+        }
+
+        public Actors GetActorAsNoTracking(int actorId)
+        {
+            return _context.Actors
+                .AsNoTracking()
+                .SingleOrDefault(a => a.ActorId == actorId);
+        }
+
         public string GetActorImage(string actorName)
         {
             return _context.Actors
@@ -32,6 +56,17 @@ namespace NightOwl.Core.Services
                 .Include(a => a.SelectedMovies)
                 .ThenInclude(a => a.Items)
                 .ToList();
+        }
+
+        public IEnumerable<Actors> GetAllActors()
+        {
+            return _context.Actors.ToList();
+        }
+
+        public void UpdateActor(Actors actorDetails)
+        {
+            _context.Actors.Update(actorDetails);
+            _context.SaveChanges();
         }
     }
 }

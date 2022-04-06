@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NightOwl.Core.DTOs;
+using NightOwl.Core.Services.Interfaces;
 using NightOwl.DataLayer.Context;
 using NightOwl.DataLayer.Entities;
 
@@ -10,31 +11,50 @@ namespace NightOwl.Web.Areas.Admin.Controller
     [Area("Admin")]
     public class ActorsController : Microsoft.AspNetCore.Mvc.Controller
     {
-        NightOwlContext _context;
-        private INotyfService _notyfService;
+        #region Injection
 
-        public ActorsController(NightOwlContext context,INotyfService notyfService)
+        private INotyfService _notyfService;
+        private IActorsRepository _actorsRepository;
+
+        public ActorsController(INotyfService notyfService, IActorsRepository actorsRepository)
         {
-            _context = context;
             _notyfService = notyfService;
+            _actorsRepository = actorsRepository;
         }
 
-        [BindProperty] 
+
+        #endregion
+
+        #region Binding Properties
+
+        [BindProperty]
         public ActorsViewModel Actors { get; set; }
+
+
+        #endregion
+
+        #region Index
 
         [Route("/Admin/Actors")]
         public IActionResult Index()
         {
-            var actors = _context.Actors.ToList();
-            return View(actors);
+            return View(_actorsRepository.GetAllActors());
         }
+
+        #endregion
+
+        #region Details
 
         [Route("/Admin/Actors/Details/{actorId}")]
         public IActionResult ActorDetails(int actorId)
         {
-            var actorsDetails = _context.Actors.Find(actorId);
-            return View(actorsDetails);
+            return View(_actorsRepository.GetActor(actorId));
         }
+
+
+        #endregion
+
+        #region CreateNew
 
         [Route("/Admin/Actors/New")]
         public IActionResult CreateActor()
@@ -75,8 +95,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     actor.ActorImage = "Default.jpg";
                 }
 
-                _context.Actors.Add(actor);
-                _context.SaveChanges();
+                _actorsRepository.AddNewActor(actor);
 
                 _notyfService.Success($"{actor.ActorName} Has Been Added Successfully !");
 
@@ -87,13 +106,18 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 _notyfService.Error("Cannot Add Actor ! Something Wrong Happened :(");
                 return View();
             }
-            
+
         }
+
+
+        #endregion
+
+        #region Update
 
         [Route("/Admin/Actors/Update/{actorId}")]
         public IActionResult UpdateActor(int actorId)
         {
-            var actorDetails = _context.Actors.Find(actorId);
+            var actorDetails = _actorsRepository.GetActor(actorId);
             return View(actorDetails);
         }
 
@@ -107,12 +131,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(actor);
 
-                var actorDetails = _context.Actors
-                    .AsNoTracking()
-                    .SingleOrDefault(a => a.ActorId == actorId);
-
-                if (actorDetails == null)
-                    return NotFound();
+                var actorDetails = _actorsRepository.GetActorAsNoTracking(actorId);
 
                 if (Actors.ActorImage?.Length > 0)
                 {
@@ -136,7 +155,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         System.IO.File.Delete(oldPath);
                     }
 
-                    using (var stream = new FileStream(newPath,FileMode.Create))
+                    using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Actors.ActorImage.CopyTo(stream);
                     }
@@ -148,8 +167,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     actor.ActorImage = actorDetails.ActorImage;
                 }
 
-                _context.Actors.Update(actor);
-                _context.SaveChanges();
+                _actorsRepository.UpdateActor(actor);
                 _notyfService.Success("Changes Saved !");
 
                 return RedirectToAction("Index");
@@ -159,26 +177,29 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 _notyfService.Error("Cannot Save Changes ! Something Wrong Happened !");
                 return View();
             }
-            
+
         }
+
+
+        #endregion
+
+        #region Remove
 
         [Route("/Admin/Actors/Remove/{actorId}")]
         public IActionResult RemoveActor(int actorId)
         {
-            var actorDetails = _context.Actors.Find(actorId);
+            var actorDetails = _actorsRepository.GetActor(actorId);
             return View(actorDetails);
         }
 
         [Route("/Admin/Actors/Remove/{actorId}")]
-        [HttpPost,ActionName("RemoveActor")]
+        [HttpPost, ActionName("RemoveActor")]
         [ValidateAntiForgeryToken]
         public IActionResult ConfirmRemoveActor(int actorId)
         {
             try
             {
-                var actorDetails = _context.Actors
-                    .AsNoTracking()
-                    .SingleOrDefault(a => a.ActorId == actorId);
+                var actorDetails = _actorsRepository.GetActorAsNoTracking(actorId);
 
                 if (actorDetails.ActorId != actorId)
                     return NotFound();
@@ -194,18 +215,19 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     System.IO.File.Delete(imagePath);
                 }
 
-                _context.Actors.Remove(actorDetails);
-                _context.SaveChanges();
+                _actorsRepository.DeleteActor(actorDetails);
 
                 _notyfService.Success($"{actorDetails.ActorName} Has Been Removed Successfully !");
                 return RedirectToAction("Index");
             }
-            catch 
+            catch
             {
                 _notyfService.Error("Something Wrong Happened During Removing Actor !");
                 return View();
             }
-           
+
         }
+
+        #endregion
     }
 }

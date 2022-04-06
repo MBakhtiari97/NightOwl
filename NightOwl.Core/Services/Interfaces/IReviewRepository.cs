@@ -16,5 +16,6 @@ namespace NightOwl.Core.Services.Interfaces
         bool RemoveReview(int reviewId);
         bool ConfirmReview(int reviewId);
         IEnumerable<Reviews> GetUnPublishedReviews();
+        IEnumerable<Reviews> GetReviewsByItemId(int itemId);
     }
 }

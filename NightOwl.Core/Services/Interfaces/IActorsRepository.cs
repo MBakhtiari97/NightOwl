@@ -11,5 +11,11 @@ namespace NightOwl.Core.Services.Interfaces
     {
         List<Actors> GetActorsByGender(string gender);
         string GetActorImage(string actorName);
+        IEnumerable<Actors> GetAllActors();
+        Actors GetActor(int actorId);
+        Actors GetActorAsNoTracking(int actorId);
+        void AddNewActor(Actors actorDetails);
+        void UpdateActor(Actors actorDetails);
+        void DeleteActor(Actors actorDetails);
     }
 }

@@ -14,6 +14,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
     [Area("Admin")]
     public class AccountController : Microsoft.AspNetCore.Mvc.Controller
     {
+        #region Injection
+
         IAccountRepository _accountRepository;
         INotyfService _notyfService;
 
@@ -22,6 +24,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
             _accountRepository = accountRepository;
             _notyfService = notyfService;
         }
+
+        #endregion
 
         #region Login
 

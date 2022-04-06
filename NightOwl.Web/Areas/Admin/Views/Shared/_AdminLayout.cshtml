@@ -79,24 +79,37 @@
                 }
                
             </div>
-            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>   
             <ul class="list-unstyled">
-                <li class="active"><a href="/Admin"> <i class="icon-home"></i>Home </a></li>
+                <li class="active"><a href="/Admin"> <i class="fa fa-home"></i>Home </a></li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li>
-                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Manage Item's</a>
-                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-movie-o"></i>Manage Item's</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
                             <li><a href="/Admin/Items/1">Movie</a></li>
                             <li><a href="/Admin/Items/2">Series</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-user-o"></i>Admins</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="#">All Admins</a></li>
+                            <li><a href="#">Admin Pending Request's</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-users"></i>Actors</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/Actors">All Actor's</a></li>
+                            <li><a href="/Admin/Actors/New">New Actor</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-gears"></i>Genre's</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/Genres">All Genre's</a></li>
+                            <li><a href="/Admin/Genres/Create">New Genre</a></li>
                         </ul>
                     </li>
                 }

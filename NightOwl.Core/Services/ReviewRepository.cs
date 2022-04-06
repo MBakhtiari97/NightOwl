@@ -36,6 +36,11 @@ namespace NightOwl.Core.Services
            return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
         }
 
+        public IEnumerable<Reviews> GetReviewsByItemId(int itemId)
+        {
+            return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
+        }
+
         public int GetTotalReviews()
         {
             return _context.Reviews.Count();

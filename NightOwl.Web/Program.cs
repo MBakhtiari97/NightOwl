@@ -90,6 +90,19 @@ app.UseAuthorization();
 
 app.UseAuthentication();
 
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/Admin"))
+    {
+        if (!context.User.Identity.IsAuthenticated)
+        {
+            context.Response.Redirect("/Login");
+        }
+    }
+
+    await next.Invoke();
+});
+
 app.UseNotyf();
 
 app.UseEndpoints(endpoints =>

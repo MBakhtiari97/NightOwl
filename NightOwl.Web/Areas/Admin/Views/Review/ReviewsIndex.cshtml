@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NightOwl.DataLayer.Entities.Reviews>
+
+@{
+    ViewData["Title"] = "ReviewsIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col col-md-12">
+    <h1>Item Review's</h1>
+    <hr/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewersName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewerIpAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPublished)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewersName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewerIpAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPublished)
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="RemoveReview" asp-controller="Review" asp-route-reviewId="@item.ReviewId">Remove</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
