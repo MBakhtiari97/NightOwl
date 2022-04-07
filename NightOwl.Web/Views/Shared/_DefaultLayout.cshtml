@@ -2,44 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" dark="true">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="DefaultLayout/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/nouislider.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/ionicons.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/plyr.css">
-    <link rel="stylesheet" href="DefaultLayout/css/photoswipe.css">
-    <link rel="stylesheet" href="DefaultLayout/css/default-skin.css">
-    <link rel="stylesheet" href="DefaultLayout/css/main.css">
-    <link rel="stylesheet" href="DefaultLayout/css/font-awesome.min.css">
-    <link rel="stylesheet" href="DefaultLayout/css/custom-styles.css">
-
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" href="DefaultLayout/icon/favicon-32x32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="DefaultLayout/icon/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="DefaultLayout/icon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="DefaultLayout/icon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="DefaultLayout/icon/apple-touch-icon-144x144.png">
-
-    <title>NightOwl - Latest movies and series</title>
-    <meta name="description" content="NightOwl - Download movies and series for free">
-    <meta property="og:locale" content="en">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="NightOwl">
-    <meta property="og:description" content="Download latest movies and tv series for free with subbed">
-    <meta property="og:site_name" content="نایت اول">
-    <meta name="keywords" content="download - download movie - download series - film - night owl">
-    <meta name="author" content="Hurr1cane">
-
+    <partial name="LayoutPartials/_HeadTags"/>
 </head>
 <body class="body">
 
@@ -49,75 +12,11 @@
     @RenderBody();
     <!-- footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <!-- footer list -->
-                <div class="col-12 col-md-3">
-                    <h6 class="footer__title">Download Our App</h6>
-                    <ul class="footer__app">
-                        <li><a href="#"><img src="DefaultLayout/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-                        <li><a href="#"><img src="DefaultLayout/img/google-play-badge.png" alt=""></a></li>
-                    </ul>
-                </div>
-                <!-- end footer list -->
-                <!-- footer list -->
-                <div class="col-6 col-sm-4 col-md-3">
-                    <h6 class="footer__title">Resources</h6>
-                    <ul class="footer__list">
-                        <li><a href="/AboutUs">About Us</a></li>
-                        <li><a href="/ContactUs">Support</a></li>
-                    </ul>
-                </div>
-                <!-- end footer list -->
-                <!-- footer list -->
-                <div class="col-12 col-sm-4 col-md-3">
-                    <h6 class="footer__title">Contact</h6>
-                    <ul class="footer__list">
-                        <li><a href="tel:+989120000000">+989120000000</a></li>
-                        <li><a href="mailto:support@nightowl.com">support@nightowl.com</a></li>
-                    </ul>
-                    <ul class="footer__social">
-                        <li class="facebook"><a href="https://facebook.com/nightowl"><i class="icon ion-logo-facebook"></i></a></li>
-                        <li class="instagram"><a href="https://instagram.com/nightowl"><i class="icon ion-logo-instagram"></i></a></li>
-                        <li class="twitter"><a href="https://twitter.com/nightowl"><i class="icon ion-logo-twitter"></i></a></li>
-                        <li class="vk"><a href="https://vk.com/nightowl"><i class="icon ion-logo-vk"></i></a></li>
-                    </ul>
-                </div>
-                <!-- end footer list -->
-                <!-- footer copyright -->
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="footer__copyright">
-                                <small><a>All rights reserved for www.nightowl.com</a></small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="footer__copyright">
-                                <small><a>Template By TemplateHub , Customized and Developed by Hurr1cane</a></small>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-                <!-- end footer copyright -->
-            </div>
-        </div>
+      <partial name="LayoutPartials/_Footer"/>
     </footer>
     <!-- end footer -->
     <!-- JS -->
-    <script src="DefaultLayout/js/jquery-3.3.1.min.js"></script>
-    <script src="DefaultLayout/js/bootstrap.bundle.min.js"></script>
-    <script src="DefaultLayout/js/owl.carousel.min.js"></script>
-    <script src="DefaultLayout/js/jquery.mousewheel.min.js"></script>
-    <script src="DefaultLayout/js/jquery.mCustomScrollbar.min.js"></script>
-    <script src="DefaultLayout/js/wNumb.js"></script>
-    <script src="DefaultLayout/js/nouislider.min.js"></script>
-    <script src="DefaultLayout/js/plyr.min.js"></script>
-    <script src="DefaultLayout/js/jquery.morelines.min.js"></script>
-    <script src="DefaultLayout/js/photoswipe.min.js"></script>
-    <script src="DefaultLayout/js/photoswipe-ui-default.min.js"></script>
-    <script src="DefaultLayout/js/main.js"></script>
+    <partial name="LayoutPartials/_Scripts"/>
     @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
