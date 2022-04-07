@@ -52,7 +52,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             try
             {
                 var adminRequestDetails = _accountRepository.GetAdminByAdminId(adminId);
-
+                //Changing Active Status
                 adminRequestDetails.IsActive = true;
                 _accountRepository.SaveChanges();
 
@@ -79,7 +79,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             try
             {
                 var adminRequestDetails = _accountRepository.GetAdminByAdminId(adminId);
-
+                //Removing Admin
                 _accountRepository.RemoveAdmin(adminRequestDetails);
                 _notyfService.Success("Request Removed Successfully !");
 

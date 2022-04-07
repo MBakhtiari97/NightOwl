@@ -58,6 +58,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(genre);
 
+                //Adding new genre 
                 _genresRepository.AddNewGenre(genre);
 
                 _notyfService.Success($"{genre.GenreName} Genre Successfully Added To Genres !");
@@ -94,6 +95,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(genre);
 
+                //Getting genre details and updating it
                 var currentGenre = _genresRepository.GetGenreAsNoTracking(genreId);
 
                 _genresRepository.UpdateGenre(genre);
@@ -128,6 +130,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
         {
             try
             {
+                //Getting genre and removing it
                 var currentGenre = _genresRepository.GetGenreAsNoTracking(genreId);
 
                 _genresRepository.RemoveGenre(currentGenre);

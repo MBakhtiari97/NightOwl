@@ -79,13 +79,16 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(gallery);
 
+                //Checking if the image was selected then do these
                 if (Galleries.ImageName?.Length > 0)
                 {
+                    //Creating a new name
                     var newName = StringGenerator.GenerateUniqueString() +
                                   Path.GetExtension(Galleries.ImageName.FileName);
 
                     gallery.ImageName = newName;
 
+                    //Initializing new path
                     var newPath = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot",
                         "img",
@@ -103,6 +106,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     gallery.ImageName = "Default.jpg";
                 }
 
+                //Adding gallery image
                 _galleryRepository.AddNewGallery(gallery);
                 _notyfServicel.Success("Image Has Successfully Added To Gallery !");
 
@@ -147,11 +151,14 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (currentImageDetails.GalleryId != galleryId)
                     return NotFound();
 
+                //Checking if the image was selected then do these
                 if (Galleries.ImageName?.Length > 0)
                 {
+                    //Giving a new name to image
                     var newName = StringGenerator.GenerateUniqueString()
                                   + Path.GetExtension(Galleries.ImageName.FileName);
 
+                    //Initializing new path and old path
                     var newPath = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot",
                         "img",
@@ -164,11 +171,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         "Galleries",
                         currentImageDetails.ImageName);
 
+                    //Removing old image
                     if (System.IO.File.Exists(oldPath) && currentImageDetails.ImageName != "Default.jpg")
                     {
                         System.IO.File.Delete(oldPath);
                     }
 
+                    //Creating new image
                     using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Galleries.ImageName.CopyTo(stream);
@@ -181,6 +190,8 @@ namespace NightOwl.Web.Areas.Admin.Controller
                     gallery.ImageName = currentImageDetails.ImageName;
                 }
 
+
+                //Updating gallery details
                 _galleryRepository.UpdateGallery(gallery);
                 _notyfServicel.Success("Changes Saved !");
 
@@ -218,17 +229,20 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (currentImageDetails.GalleryId != galleryId)
                     return NotFound();
 
+                //Getting image path in order to removing it
                 var imagePath = Path.Combine(Directory.GetCurrentDirectory(),
                     "wwwroot",
                     "img",
                     "Galleries",
                     currentImageDetails.ImageName);
 
+                //Removing if exists
                 if (System.IO.File.Exists(imagePath) && currentImageDetails.ImageName != "Default.jpg")
                 {
                     System.IO.File.Delete(imagePath);
                 }
 
+                //Removing from database
                 _galleryRepository.RemoveGallery(currentImageDetails);
                 _notyfServicel.Success("Image Has Been Removed Successfully !");
 

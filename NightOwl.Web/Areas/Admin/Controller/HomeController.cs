@@ -30,6 +30,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
         public IActionResult Index()
         {
+            //Getting and filling Required ViewBags
             #region RequiredViewBags
 
             ViewBag.ReviewsNo = _reviewRepository.GetTotalReviews();

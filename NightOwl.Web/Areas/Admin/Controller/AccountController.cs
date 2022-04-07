@@ -111,6 +111,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 return View(registerInfo);
             }
 
+            //Creating a new admin and filling it with proper values !
             Admins newAdmin = new Admins()
             {
                 AdminEmailAddress = registerInfo.EmailAddress,

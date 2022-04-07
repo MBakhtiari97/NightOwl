@@ -34,7 +34,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
         #region BindingProperty
 
-        [BindProperty] 
+        [BindProperty]
         public ItemsViewModel Items { get; set; }
 
         #endregion
@@ -90,13 +90,15 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 items.AddedTime = DateTime.Now;
                 _movieRepository.AddNewItem(items);
 
+                //Checking if the image was selected then do these 
                 if (Items.Banner?.Length > 0)
                 {
+                    //Creating a name for banner
                     var createName = items.Title.Replace(" ", "").Replace(":", "").ToString();
                     var bannerName = items.ItemId + "-" + createName;
                     items.Banner = bannerName + Path.GetExtension(Items.Banner.FileName);
 
-
+                    //Getting its path
                     var bannerPath = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot",
                         "img",
@@ -104,6 +106,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         bannerName +
                         Path.GetExtension(Items.Banner.FileName));
 
+                    //Saving the banner image
                     using (var stream = new FileStream(bannerPath, FileMode.Create))
                     {
                         Items.Banner.CopyTo(stream);
@@ -161,12 +164,17 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
                 _movieRepository.UpdateItem(items);
 
+                //Checking if the image was selected then do these
                 if (Items.Banner?.Length > 0)
                 {
-                    var newName = itemId + "-" + items.Title.Replace(" ", "").Replace(":", "")
-                                      .ToString() +
-                                  Path.GetExtension(Items.Banner.FileName);
+                    //Creating new name
+                    var newName = itemId + "-" + items.Title
+                                      .Replace(" ", "")
+                                      .Replace(":", "")
+                                      .ToString()
+                                  + Path.GetExtension(Items.Banner.FileName);
 
+                    //Gathering new and old path
                     var newPath = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot",
                         "img",
@@ -179,11 +187,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
                         "Movies",
                         currentItem.Banner);
 
+                    //Removing old image
                     if (System.IO.File.Exists(oldPath))
                     {
                         System.IO.File.Delete(oldPath);
                     }
 
+                    //Saving new image
                     using (var stream = new FileStream(newPath, FileMode.Create))
                     {
                         Items.Banner.CopyTo(stream);
@@ -226,18 +236,20 @@ namespace NightOwl.Web.Areas.Admin.Controller
         {
             try
             {
+                //Getting item(movie or serie)
                 var currentItem = _movieRepository.GetItemAsNoTracking(itemId);
 
                 if (currentItem == null)
                     return NotFound();
 
+                //Getting old path
                 var oldPath = Path.Combine(Directory.GetCurrentDirectory(),
                     "wwwroot",
                     "img",
                     "Movies",
                     currentItem.Banner);
 
-
+                //Removing if exists
                 if (System.IO.File.Exists(oldPath))
                 {
                     System.IO.File.Delete(oldPath);
@@ -287,11 +299,13 @@ namespace NightOwl.Web.Areas.Admin.Controller
         {
             try
             {
+                //Getting download links of item
                 var currentDetails = _movieRepository.GetDownloadLinkDetails(downloadId);
 
                 if (currentDetails == null)
                     return NotFound();
 
+                //Updating download link details
                 _movieRepository.UpdateDownloadDetails(download);
 
                 _notyfService.Success("Download Detail's Has Been Updated Successfully !");
@@ -323,7 +337,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             try
             {
                 download.UploadDate = DateTime.Now;
-
+                //Upload new download link details
                 _movieRepository.UploadNewDownload(download);
 
                 _notyfService.Success("New Download Details Added");
@@ -357,6 +371,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             {
                 var downloadDetails = _movieRepository.GetDownloadAsNoTracking(downloadId);
 
+                //Removing download link 
                 _movieRepository.RemoveDownloadLink(downloadDetails);
 
                 _notyfService.Success("Download Link Removed Successfully !");
