@@ -3,6 +3,7 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NightOwl.Core.Services.Interfaces;
 using NightOwl.DataLayer.Context;
 using NightOwl.DataLayer.Entities;
 
@@ -11,23 +12,33 @@ namespace NightOwl.Web.Areas.Admin.Controller
     [Area("Admin")]
     public class GenresController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private NightOwlContext _context;
-        private INotyfService _notyfService;
+        #region Injection
 
-        public GenresController(NightOwlContext context, INotyfService notyfService)
+        private INotyfService _notyfService;
+        IGenresRepository _genresRepository;
+
+        public GenresController(INotyfService notyfService, IGenresRepository genresRepository)
         {
-            _context = context;
             _notyfService = notyfService;
+            _genresRepository = genresRepository;
         }
 
+
+        #endregion
+
+        #region Index
 
         // GET: GenresController
         [Route("/Admin/Genres")]
         public ActionResult Index()
         {
-            var genres = _context.Genres.ToList();
-            return View(genres);
+            return View(_genresRepository.GetAllGenres());
         }
+
+
+        #endregion
+
+        #region CreateNew
 
         // GET: GenresController/Create
         [Route("/Admin/Genres/Create")]
@@ -47,8 +58,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 if (!ModelState.IsValid)
                     return View(genre);
 
-                _context.Genres.Add(genre);
-                _context.SaveChanges();
+                _genresRepository.AddNewGenre(genre);
 
                 _notyfService.Success($"{genre.GenreName} Genre Successfully Added To Genres !");
 
@@ -61,35 +71,32 @@ namespace NightOwl.Web.Areas.Admin.Controller
             }
         }
 
+
+        #endregion
+
+        #region Update
+
         // GET: GenresController/Edit/5
         [Route("/Admin/Genres/Update/{genreId}")]
         public ActionResult Edit(int genreId)
         {
-            var genre = _context.Genres.Find(genreId);
-
-            if (genre == null)
-                return NotFound();
-
-            return View(genre);
+            return View(_genresRepository.GetGenreByGenreId(genreId));
         }
 
         // POST: GenresController/Edit/5
         [Route("/Admin/Genres/Update/{genreId}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int genreId,[Bind("GenreId", "GenreName")] Genres genre)
+        public ActionResult Edit(int genreId, [Bind("GenreId", "GenreName")] Genres genre)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return View(genre);
 
-                var currentGenre = _context.Genres.AsNoTracking().SingleOrDefault(g => g.GenreId == genreId);
-                if (currentGenre == null)
-                    return NotFound();
+                var currentGenre = _genresRepository.GetGenreAsNoTracking(genreId);
 
-                _context.Genres.Update(genre);
-                _context.SaveChanges();
+                _genresRepository.UpdateGenre(genre);
 
                 _notyfService.Success("Changes Saved !");
 
@@ -102,29 +109,28 @@ namespace NightOwl.Web.Areas.Admin.Controller
             }
         }
 
+        #endregion
+
+        #region Remove
+
         // GET: GenresController/Delete/5
         [Route("/Admin/Genres/Remove/{genreId}")]
         public ActionResult Delete(int genreId)
         {
-            var genreDetails = _context.Genres.Find(genreId);
-            return View(genreDetails);
+            return View(_genresRepository.GetGenreByGenreId(genreId));
         }
 
         // POST: GenresController/Delete/5
         [Route("/Admin/Genres/Remove/{genreId}")]
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int genreId)
         {
             try
             {
-                var currentGenre = _context.Genres.AsNoTracking().SingleOrDefault(g => g.GenreId == genreId);
+                var currentGenre = _genresRepository.GetGenreAsNoTracking(genreId);
 
-                if (currentGenre == null)
-                    return NotFound();
-
-                _context.Genres.Remove(currentGenre);
-                _context.SaveChanges();
+                _genresRepository.RemoveGenre(currentGenre);
 
                 _notyfService.Success($"{currentGenre.GenreName} Genre Has Been Deleted Successfully !");
                 return RedirectToAction(nameof(Index));
@@ -135,5 +141,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
                 return View();
             }
         }
+
+        #endregion
     }
 }

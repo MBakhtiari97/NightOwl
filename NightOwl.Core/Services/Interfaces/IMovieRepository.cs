@@ -27,6 +27,18 @@ namespace NightOwl.Core.Services.Interfaces
         int GetTotalMovies();
         int GetTotalSeries();
         int GetTotalComingSoon();
+        Items GetItemByItemId(int itemId);
+        void AddNewItem(Items item);
+        void SaveChanges();
+        Items GetItemAsNoTracking(int itemId);
+        void UpdateItem(Items item);
+        void Remove(Items item);
+        IEnumerable<Download> GetDownloadLinksByItemId(int itemId);
+        Download GetDownloadLinkDetails(int downloadId);
+        void UpdateDownloadDetails(Download download);
+        void UploadNewDownload(Download download);
+        void RemoveDownloadLink(Download download);
+        Download GetDownloadAsNoTracking(int downloadId);
 
     }
 }

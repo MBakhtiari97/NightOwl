@@ -19,6 +19,12 @@ namespace NightOwl.Core.Services
             _context = context;
         }
 
+        public void AddNewItem(Items item)
+        {
+            _context.Items.Add(item);
+            _context.SaveChanges();
+        }
+
         public List<Items> GetComingSoon()
         {
             return _context.Items
@@ -27,6 +33,38 @@ namespace NightOwl.Core.Services
                 .ThenInclude(i => i.Genres)
                 .Take(6)
                 .ToList();
+        }
+
+        public Download GetDownloadAsNoTracking(int downloadId)
+        {
+            return _context.Download
+                .AsNoTracking()
+                .SingleOrDefault(d => d.DownloadId == downloadId);
+        }
+
+        public Download GetDownloadLinkDetails(int downloadId)
+        {
+            return _context.Download
+                .Include(d => d.Items)
+                .AsNoTracking()
+                .SingleOrDefault(d => d.DownloadId == downloadId);
+        }
+
+        public IEnumerable<Download> GetDownloadLinksByItemId(int itemId)
+        {
+            return _context.Download
+                .Where(d => d.ItemId == itemId)
+                .ToList();
+        }
+
+        public Items GetItemAsNoTracking(int itemId)
+        {
+            return _context.Items.AsNoTracking().SingleOrDefault(i => i.ItemId == itemId);
+        }
+
+        public Items GetItemByItemId(int itemId)
+        {
+            return _context.Items.Find(itemId);
         }
 
         public List<Items> GetLatest()
@@ -185,6 +223,42 @@ namespace NightOwl.Core.Services
         public int GetTotalSeries()
         {
             return _context.SelectedCategories.Count(c => c.CategoryId == 2);
+        }
+
+        public void Remove(Items item)
+        {
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+        }
+
+        public void RemoveDownloadLink(Download download)
+        {
+            _context.Download.Remove(download);
+            _context.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
+
+        public void UpdateDownloadDetails(Download download)
+        {
+            _context.Download.Update(download);
+            _context.SaveChanges();
+        }
+
+        public void UpdateItem(Items item)
+        {
+
+            _context.Items.Update(item);
+            _context.SaveChanges();
+        }
+
+        public void UploadNewDownload(Download download)
+        {
+            _context.Download.Add(download);
+            _context.SaveChanges();
         }
     }
 }

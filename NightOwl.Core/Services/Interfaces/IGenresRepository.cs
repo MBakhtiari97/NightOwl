@@ -11,5 +11,10 @@ namespace NightOwl.Core.Services.Interfaces
     {
         List<Genres> GetAllGenres();
         string GetGenreNameByGenreId(int genreId);
+        void AddNewGenre(Genres genre);
+        Genres GetGenreByGenreId(int genreId);
+        void UpdateGenre(Genres genre);
+        Genres GetGenreAsNoTracking(int genreId);
+        void RemoveGenre(Genres genre);
     }
 }
