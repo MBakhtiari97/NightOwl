@@ -21,13 +21,17 @@ namespace NightOwl.Core.Services
 
         public void AddNewGallery(Galleries gallery)
         {
-            _context.Galleries.Add(gallery);
+            _context.Galleries
+                .Add(gallery);
+
             _context.SaveChanges();
         }
 
         public IEnumerable<Galleries> GetGalleriesByItemId(int itemId)
         {
-            return _context.Galleries.Where(g => g.ItemId == itemId).ToList();
+            return _context.Galleries
+                .Where(g => g.ItemId == itemId)
+                .ToList();
         }
 
         public Galleries GetGalleryAsNoTracking(int galleryId)
@@ -39,23 +43,30 @@ namespace NightOwl.Core.Services
 
         public Galleries GetGalleryByGalleryId(int galleryId)
         {
-            return _context.Galleries.Find(galleryId);
+            return _context.Galleries
+                .Find(galleryId);
         }
 
         public IEnumerable<Galleries> GetItemGalleryByItemId(int itemId)
         {
-            return _context.Galleries.Where(g => g.ItemId == itemId).ToList();
+            return _context.Galleries
+                .Where(g => g.ItemId == itemId)
+                .ToList();
         }
 
         public void RemoveGallery(Galleries gallery)
         {
-            _context.Galleries.Remove(gallery);
+            _context.Galleries
+                .Remove(gallery);
+
             _context.SaveChanges();
         }
 
         public void UpdateGallery(Galleries gallery)
         {
-            _context.Galleries.Update(gallery);
+            _context.Galleries
+                .Update(gallery);
+
             _context.SaveChanges();
         }
     }

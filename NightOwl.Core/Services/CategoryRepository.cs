@@ -20,7 +20,8 @@ namespace NightOwl.Core.Services
 
         public List<Categories> GetAllCategories()
         {
-           return _context.Categories.ToList();
+           return _context.Categories
+               .ToList();
         }
     }
 }

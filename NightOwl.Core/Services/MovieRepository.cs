@@ -21,7 +21,9 @@ namespace NightOwl.Core.Services
 
         public void AddNewItem(Items item)
         {
-            _context.Items.Add(item);
+            _context.Items
+                .Add(item);
+
             _context.SaveChanges();
         }
 
@@ -59,12 +61,15 @@ namespace NightOwl.Core.Services
 
         public Items GetItemAsNoTracking(int itemId)
         {
-            return _context.Items.AsNoTracking().SingleOrDefault(i => i.ItemId == itemId);
+            return _context.Items
+                .AsNoTracking()
+                .SingleOrDefault(i => i.ItemId == itemId);
         }
 
         public Items GetItemByItemId(int itemId)
         {
-            return _context.Items.Find(itemId);
+            return _context.Items
+                .Find(itemId);
         }
 
         public List<Items> GetLatest()
@@ -212,28 +217,35 @@ namespace NightOwl.Core.Services
 
         public int GetTotalComingSoon()
         {
-            return _context.Items.Count(i => i.ReleaseYear == "-");
+            return _context.Items
+                .Count(i => i.ReleaseYear == "-");
         }
 
         public int GetTotalMovies()
         {
-            return _context.SelectedCategories.Count(c => c.CategoryId == 1);
+            return _context.SelectedCategories
+                .Count(c => c.CategoryId == 1);
         }
 
         public int GetTotalSeries()
         {
-            return _context.SelectedCategories.Count(c => c.CategoryId == 2);
+            return _context.SelectedCategories
+                .Count(c => c.CategoryId == 2);
         }
 
         public void Remove(Items item)
         {
-            _context.Items.Remove(item);
+            _context.Items
+                .Remove(item);
+
             _context.SaveChanges();
         }
 
         public void RemoveDownloadLink(Download download)
         {
-            _context.Download.Remove(download);
+            _context.Download
+                .Remove(download);
+
             _context.SaveChanges();
         }
 
@@ -244,20 +256,26 @@ namespace NightOwl.Core.Services
 
         public void UpdateDownloadDetails(Download download)
         {
-            _context.Download.Update(download);
+            _context.Download
+                .Update(download);
+
             _context.SaveChanges();
         }
 
         public void UpdateItem(Items item)
         {
 
-            _context.Items.Update(item);
+            _context.Items
+                .Update(item);
+
             _context.SaveChanges();
         }
 
         public void UploadNewDownload(Download download)
         {
-            _context.Download.Add(download);
+            _context.Download
+                .Add(download);
+
             _context.SaveChanges();
         }
     }

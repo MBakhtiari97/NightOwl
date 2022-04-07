@@ -20,12 +20,14 @@ namespace NightOwl.Core.Services
 
         public bool AddNewAdmin(Admins newAdmin)
         {
-            _context.Admins.Add(newAdmin);
+            _context.Admins
+                .Add(newAdmin);
+
             _context.SaveChanges();
             return true;
         }
 
-        public Admins? GetAdmin(string emailAddress, string password)
+        public Admins GetAdmin(string emailAddress, string password)
         {
             return _context.Admins
                 .SingleOrDefault(a =>
@@ -34,22 +36,28 @@ namespace NightOwl.Core.Services
 
         public Admins GetAdminByAdminId(int adminId)
         {
-            return _context.Admins.Find(adminId);
+            return _context.Admins
+                .Find(adminId);
         }
 
         public IEnumerable<Admins> GetAdminRequests()
         {
-            return _context.Admins.Where(a => a.IsActive == false).ToList();
+            return _context.Admins
+                .Where(a => a.IsActive == false)
+                .ToList();
         }
 
         public IEnumerable<Admins> GetAllAdmins()
         {
-           return _context.Admins.ToList();
+           return _context.Admins
+               .ToList();
         }
 
         public void RemoveAdmin(Admins admin)
         {
-            _context.Admins.Remove(admin);
+            _context.Admins
+                .Remove(admin);
+
             _context.SaveChanges();
         }
 

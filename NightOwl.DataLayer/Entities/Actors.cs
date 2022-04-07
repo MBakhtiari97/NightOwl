@@ -14,10 +14,13 @@ namespace NightOwl.DataLayer.Entities
         public int ActorId { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Actor Name")]
         public string ActorName { get; set; }
         [MaxLength(250)]
+        [Display(Name = "Gender")]
         public string ActorGender { get; set; }
         [MaxLength(250)]
+        [Display(Name = "Photo")]
         public string ActorImage { get; set; }
 
         //nav

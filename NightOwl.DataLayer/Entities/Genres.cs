@@ -11,9 +11,11 @@ namespace NightOwl.DataLayer.Entities
     public class Genres
     {
         [Key]
+        [Display(Name = "Genre ID")]
         public int GenreId { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Genre Name")]
         public string GenreName { get; set; }
 
         //nav

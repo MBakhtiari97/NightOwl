@@ -22,7 +22,9 @@ namespace NightOwl.Core.Services
 
         public bool ConfirmReview(int reviewId)
         {
-            var review = _context.Reviews.Find(reviewId);
+            var review = _context.Reviews
+                .Find(reviewId);
+
             if (review == null)
                 return false;
 
@@ -33,38 +35,51 @@ namespace NightOwl.Core.Services
 
         public List<Reviews> GetReviewsByItem(int itemId)
         {
-           return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
+           return _context.Reviews
+               .Where(r => r.ItemId == itemId)
+               .ToList();
         }
 
         public IEnumerable<Reviews> GetReviewsByItemId(int itemId)
         {
-            return _context.Reviews.Where(r => r.ItemId == itemId).ToList();
+            return _context.Reviews
+                .Where(r => r.ItemId == itemId)
+                .ToList();
         }
 
         public int GetTotalReviews()
         {
-            return _context.Reviews.Count();
+            return _context.Reviews
+                .Count();
         }
 
         public IEnumerable<Reviews> GetUnPublishedReviews()
         {
-            return _context.Reviews.Where(r => !r.IsPublished).ToList();
+            return _context.Reviews
+                .Where(r => !r.IsPublished)
+                .ToList();
         }
 
         public bool RemoveReview(int reviewId)
         {
-            var review = _context.Reviews.Find(reviewId);
+            var review = _context.Reviews
+                .Find(reviewId);
+
             if (review == null)
                 return false;
 
-            _context.Reviews.Remove(review);
+            _context.Reviews
+                .Remove(review);
+
             _context.SaveChanges();
             return true;
         }
 
         public bool SubmitReview(Reviews newReview)
         {
-            _context.Reviews.Add(newReview);
+            _context.Reviews
+                .Add(newReview);
+
             _context.SaveChanges();
             return true;
         }

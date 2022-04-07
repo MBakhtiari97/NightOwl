@@ -21,39 +21,51 @@ namespace NightOwl.Core.Services
 
         public void AddNewGenre(Genres genre)
         {
-            _context.Genres.Add(genre);
+            _context.Genres
+                .Add(genre);
+
             _context.SaveChanges();
         }
 
         public List<Genres> GetAllGenres()
         {
-            return _context.Genres.ToList();
+            return _context.Genres
+                .ToList();
         }
 
         public Genres GetGenreAsNoTracking(int genreId)
         {
-            return _context.Genres.AsNoTracking().SingleOrDefault(g => g.GenreId == genreId);
+            return _context.Genres
+                .AsNoTracking()
+                .SingleOrDefault(g => g.GenreId == genreId);
         }
 
         public Genres GetGenreByGenreId(int genreId)
         {
-            return _context.Genres.Find(genreId);
+            return _context.Genres
+                .Find(genreId);
         }
 
         public string GetGenreNameByGenreId(int genreId)
         {
-            return _context.Genres.Single(g => g.GenreId == genreId).GenreName;
+            return _context.Genres
+                .Single(g => g.GenreId == genreId)
+                .GenreName;
         }
 
         public void RemoveGenre(Genres genre)
         {
-            _context.Genres.Remove(genre);
+            _context.Genres
+                .Remove(genre);
+
             _context.SaveChanges();
         }
 
         public void UpdateGenre(Genres genre)
         {
-            _context.Genres.Update(genre);
+            _context.Genres
+                .Update(genre);
+
             _context.SaveChanges();
         }
     }

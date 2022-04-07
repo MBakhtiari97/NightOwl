@@ -13,11 +13,14 @@ namespace NightOwl.DataLayer.Entities
         [Key]
         public int GalleryId { get; set; }
         [MaxLength(250)]
+        [Display(Name = "Gallery Image")]
         public string ImageName { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Image Alt Name")]
         public string ImageAltName { get; set; }
         [Required]
+        [Display(Name = "Item")]
         public int ItemId { get; set; }
         //nav
         [ForeignKey("ItemId")]

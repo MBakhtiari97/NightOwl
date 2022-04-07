@@ -21,19 +21,24 @@ namespace NightOwl.Core.Services
 
         public void AddNewActor(Actors actorDetails)
         {
-            _context.Actors.Add(actorDetails);
+            _context.Actors
+                .Add(actorDetails);
+
             _context.SaveChanges();
         }
 
         public void DeleteActor(Actors actorDetails)
         {
-            _context.Actors.Remove(actorDetails);
+            _context.Actors
+                .Remove(actorDetails);
+
             _context.SaveChanges();
         }
 
         public Actors GetActor(int actorId)
         {
-            return _context.Actors.Find(actorId);
+            return _context.Actors
+                .Find(actorId);
         }
 
         public Actors GetActorAsNoTracking(int actorId)
@@ -46,7 +51,8 @@ namespace NightOwl.Core.Services
         public string GetActorImage(string actorName)
         {
             return _context.Actors
-                .Single(a => a.ActorName == actorName).ActorImage;
+                .Single(a => a.ActorName == actorName)
+                .ActorImage;
         }
 
         public List<Actors> GetActorsByGender(string gender)
@@ -60,12 +66,15 @@ namespace NightOwl.Core.Services
 
         public IEnumerable<Actors> GetAllActors()
         {
-            return _context.Actors.ToList();
+            return _context.Actors
+                .ToList();
         }
 
         public void UpdateActor(Actors actorDetails)
         {
-            _context.Actors.Update(actorDetails);
+            _context.Actors
+                .Update(actorDetails);
+
             _context.SaveChanges();
         }
     }
