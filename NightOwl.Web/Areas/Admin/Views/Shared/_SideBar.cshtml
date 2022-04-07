@@ -1,0 +1,50 @@
+﻿@using System.Security.Claims
+<nav id="sidebar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="avatar"><img src="/admin-resources/img/Default.png" alt="Admin Profile" class="img-fluid rounded-circle"></div>
+                    <div class="title">
+                        <h1 class="h5">@User.FindFirstValue(ClaimTypes.Name).ToString()</h1>
+                        <p>@User.FindFirstValue(ClaimTypes.Email).ToString()</p>
+                    </div>
+                }
+               
+            </div>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>   
+            <ul class="list-unstyled">
+                <li class="active"><a href="/Admin"> <i class="fa fa-home"></i>Home </a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-movie-o"></i>Manage Item's</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/Items/1">Movie</a></li>
+                            <li><a href="/Admin/Items/2">Series</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-user-o"></i>Admins</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/AdminIndex">All Admins</a></li>
+                            <li><a href="/Admin">Admin Pending Request's</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-users"></i>Actors</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/Actors">All Actor's</a></li>
+                            <li><a href="/Admin/Actors/New">New Actor</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-gears"></i>Genre's</a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled">
+                            <li><a href="/Admin/Genres">All Genre's</a></li>
+                            <li><a href="/Admin/Genres/Create">New Genre</a></li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </nav>

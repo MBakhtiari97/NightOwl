@@ -137,5 +137,74 @@ namespace NightOwl.Web.Areas.Admin.Controller
 
         #endregion
 
+        #region ForgotPassword
+        [Route("/Forgot")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/Forgot")]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel forgot)
+        {
+            if (!ModelState.IsValid)
+                return View(forgot);
+
+            var admin = _accountRepository.GetAdminForRecovery(forgot.EmailAddress);
+            if (admin == null)
+            {
+                _notyfService.Error("Cannot find any admin with this email address !");
+                return View(forgot);
+            }
+
+            admin.ForgotPassword = true;
+            _accountRepository.SaveChanges();
+
+            _notyfService.Success("Account recovery request has been sent" +
+                                  " to moderator successfully ! moderator will" +
+                                  " contact you as soon as possible for verification!");
+
+            return Redirect("/Login");
+        }
+
+        #endregion
+
+        #region RecoverAccount
+
+        [Route("/Admin/Recover/Confirm/{adminId}")]
+        public IActionResult ConfirmRecover(int adminId)
+        {
+            //Getting admin
+            var admin = _accountRepository
+                .GetAdminByAdminId(adminId);
+
+            //Generating new password
+            var newPassword = adminId + admin.AdminPhoneNumber;
+            admin.Password = PasswordHelper.EncodePasswordMd5(newPassword);
+            admin.ForgotPassword = false;
+
+            //Saving changes
+            _accountRepository.SaveChanges();
+            _notyfService.Success("Request Confirmed !");
+            return Redirect("/Admin");
+        }
+
+        [Route("/Admin/Recover/Decline/{adminId}")]
+        public IActionResult DeclineRecover(int adminId)
+        {
+            //Getting admin
+            var admin = _accountRepository
+                .GetAdminByAdminId(adminId);
+
+            //Declining request
+            admin.ForgotPassword = false;
+
+            //Changing password
+            _accountRepository.SaveChanges();
+            _notyfService.Success("Request Declined !");
+            return Redirect("/Admin");
+        }
+        #endregion
     }
 }

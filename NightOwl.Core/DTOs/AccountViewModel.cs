@@ -20,7 +20,13 @@ namespace NightOwl.Core.DTOs
         [Required]
         public bool RememberMe { get; set; }
     }
-
+    public class ForgotPasswordViewModel
+    {
+        [Required]
+        [MaxLength(250)]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address !")]
+        public string EmailAddress { get; set; }
+    }
     public class RegisterAdminViewModel
     {
         [Required]

@@ -36,5 +36,7 @@ namespace NightOwl.DataLayer.Entities
         public bool IsActive { get; set; }
         [Display(Name = "Moderator Status")]
         public bool IsModerator { get; set; }
+        [Display(Name = "Forgot Password Status")]
+        public bool? ForgotPassword { get; set; }
     }
 }

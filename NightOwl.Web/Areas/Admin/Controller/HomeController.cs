@@ -39,6 +39,7 @@ namespace NightOwl.Web.Areas.Admin.Controller
             ViewBag.ComingSoonNo = _movieRepository.GetTotalComingSoon();
             ViewBag.AdminRequests = _accountRepository.GetAdminRequests();
             ViewBag.UnPublishedReviews = _reviewRepository.GetUnPublishedReviews();
+            ViewBag.ResetPasswordRequests = _accountRepository.GetRecoverPasswordRequests();
 
             #endregion
 

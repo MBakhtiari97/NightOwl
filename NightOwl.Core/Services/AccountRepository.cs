@@ -40,6 +40,12 @@ namespace NightOwl.Core.Services
                 .Find(adminId);
         }
 
+        public Admins GetAdminForRecovery(string emailAddress)
+        {
+            return _context.Admins
+                .SingleOrDefault(a => a.AdminEmailAddress == emailAddress);
+        }
+
         public IEnumerable<Admins> GetAdminRequests()
         {
             return _context.Admins
@@ -51,6 +57,13 @@ namespace NightOwl.Core.Services
         {
            return _context.Admins
                .ToList();
+        }
+
+        public IEnumerable<Admins> GetRecoverPasswordRequests()
+        {
+            return _context.Admins
+                .Where(a => a.ForgotPassword == true)
+                .ToList();
         }
 
         public void RemoveAdmin(Admins admin)

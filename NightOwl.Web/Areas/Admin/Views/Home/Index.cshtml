@@ -1,9 +1,11 @@
 ﻿@using NightOwl.DataLayer.Entities
+@using System.Security.Claims
 
 @{
     ViewData["Title"] = "Index";
     List<Reviews> unPublishedReviews = ViewBag.UnPublishedReviews;
     List<Admins> AdminRequests = ViewBag.AdminRequests;
+    List<Admins> adminRecover = ViewBag.ResetPasswordRequests;
 }
 
 
@@ -68,74 +70,118 @@
 
 
 @if (unPublishedReviews.Any())
-{ 
+{
     <div class="col col-md-12 text-center">
         <div class="title"><h1>Waiting for confirm review's</h1></div>
         <div class="table-responsive">
             <table class="table table-striped table-hover tableHomeAdmin">
                 <thead>
-                <tr>
-                    <th>Author's Name</th>
-                    <th>IP Address</th>
-                    <th>Score</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
+                    <tr>
+                        <th>Author's Name</th>
+                        <th>IP Address</th>
+                        <th>Score</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach (var review in unPublishedReviews)
-                {
-                    <tr>
-                        <td>@review.ReviewersName</td>
-                        <td>@review.ReviewerIpAddress</td>
-                        <td>@review.ReviewRating</td>
-                        <td>@review.ReviewTitle</td>
-                        <td>@review.ReviewDescription</td>
-                        <td>@review.ReviewDate</td>
-                        <td><a class="btn btn-outline-primary" href="/Admin/Review/ConfirmReview?reviewId=@review.ReviewId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/Review/RemoveReview?reviewId=@review.ReviewId">Delete</a></td>
-                    </tr>
-                }
+                    @foreach (var review in unPublishedReviews)
+                    {
+                        <tr>
+                            <td>@review.ReviewersName</td>
+                            <td>@review.ReviewerIpAddress</td>
+                            <td>@review.ReviewRating</td>
+                            <td>@review.ReviewTitle</td>
+                            <td>@review.ReviewDescription</td>
+                            <td>@review.ReviewDate</td>
+                            <td><a class="btn btn-outline-success" href="/Admin/Review/ConfirmReview?reviewId=@review.ReviewId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/Review/RemoveReview?reviewId=@review.ReviewId">Delete</a></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
-    </div>  
+    </div>
 }
 
+<hr/>
 
 @if (AdminRequests.Any())
-{ 
+{
     <div class="col col-md-12 text-center">
         <div class="title"><h1>Waiting for confirm admin request's</h1></div>
         <div class="table-responsive">
             <table class="table table-striped table-hover tableHomeAdmin">
                 <thead>
-                <tr>
-                    <th>Request Admin Id</th>
-                    <th>IP Address</th>
-                    <th>Name</th>
-                    <th>Email Address</th>
-                    <th>Phone Number</th>
-                    <th>Is Active</th>
-                    <th>Action</th>
-                </tr>
+                    <tr>
+                        <th>Request Admin Id</th>
+                        <th>IP Address</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Is Active</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach (var request in AdminRequests)
-                {
-                    <tr>
-                        <td>@request.AdminId</td>
-                        <td>@request.AdminIpAddress</td>
-                        <td>@request.AdminName</td>
-                        <td>@request.AdminEmailAddress</td>
-                        <td>@request.AdminPhoneNumber</td>
-                        <td>Not Yet !</td>
-                        <td><a class="btn btn-outline-success" href="/Admin/ManageRequest/Confirm/@request.AdminId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/ManageRequest/Decline/@request.AdminId">Decline</a></td>
-                    </tr>
-                }
+                    @foreach (var request in AdminRequests)
+                    {
+                        <tr>
+                            <td>@request.AdminId</td>
+                            <td>@request.AdminIpAddress</td>
+                            <td>@request.AdminName</td>
+                            <td>@request.AdminEmailAddress</td>
+                            <td>@request.AdminPhoneNumber</td>
+                            <td>Not Yet !</td>
+                            <td><a class="btn btn-outline-success" href="/Admin/ManageRequest/Confirm/@request.AdminId">Confirm</a> <br> <a class="btn btn-outline-danger" href="/Admin/ManageRequest/Decline/@request.AdminId">Decline</a></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
-    </div>  
+    </div>
+}
+
+<hr/>
+
+@if (User.FindFirstValue("IsModerator").ToString() == "True")
+{
+    @if (adminRecover.Any())
+    {
+        <div class="col col-md-12 text-center">
+            <div class="title"><h1>Waiting for recover password</h1></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover tableHomeAdmin">
+                    <thead>
+                        <tr>
+                            <th>Admin Id</th>
+                            <th>IP Address</th>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>Phone Number</th>
+                            <th>Is Active</th>
+                            <th>Need Help</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in adminRecover)
+                        {
+                            <tr>
+                                <td>@request.AdminId</td>
+                                <td>@request.AdminIpAddress</td>
+                                <td>@request.AdminName</td>
+                                <td>@request.AdminEmailAddress</td>
+                                <td>@request.AdminPhoneNumber</td>
+                                <td>@request.IsActive</td>
+                                <td>@request.ForgotPassword</td>
+                                <td><a class="btn btn-outline-success" href="/Admin/Recover/Confirm/@request.AdminId">Confirm Request</a> <br> <a class="btn btn-outline-danger" href="/Admin/Recover/Decline/@request.AdminId">Decline</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 }

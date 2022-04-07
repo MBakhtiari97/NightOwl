@@ -17,5 +17,7 @@ namespace NightOwl.Core.Services.Interfaces
         void SaveChanges();
         void RemoveAdmin(Admins admin);
         IEnumerable<Admins> GetAdminRequests();
+        Admins GetAdminForRecovery(string emailAddress);
+        IEnumerable<Admins> GetRecoverPasswordRequests();
     }
 }
